@@ -424,6 +424,34 @@ button.imon:hover{border-color:var(--gold);box-shadow:0 0 8px rgba(232,184,90,.3
 .mapa.lk:hover path{fill:#c8c0b0}
 #mtip{position:fixed;z-index:70;display:none;width:250px;padding:10px 12px;border:1px solid #c8962e;border-radius:6px;background:linear-gradient(180deg,#2a1b10,#140c07);box-shadow:0 8px 24px rgba(0,0,0,.6);color:#f0e2c0;font-size:13px}
 #mtip>*+*{margin-top:6px}.mtl{display:flex;flex-direction:column;gap:2px;font-size:12.5px}
+.dlg:has(.tk){max-width:780px}
+.tk{display:flex;flex-direction:column;gap:10px}
+.tkh{display:flex;justify-content:space-between;font-size:12px;color:#cdbb9a;letter-spacing:.04em;text-transform:uppercase}
+.tka{display:grid!important;grid-template-columns:1fr auto 1fr;align-items:stretch;gap:10px;padding:14px;border-radius:8px;background:radial-gradient(ellipse at 50% 120%,rgba(160,60,20,.35),transparent 60%),linear-gradient(180deg,#1d120a,#0e0805);border:1px solid #5a3d1e}
+.tk.boss .tka{border-color:#a3221a;box-shadow:inset 0 0 30px rgba(163,34,26,.35)}
+.tkc{position:relative;display:flex;flex-direction:column;align-items:center;gap:5px;min-width:0;text-align:center}
+.tkpic{height:84px;display:flex;align-items:flex-end;justify-content:center}.tkpic img{max-height:84px;width:auto}.tkpic svg{width:72px;height:72px}
+.tkvs{align-self:center;font:700 22px var(--hd,Georgia,serif);color:#a3221a;text-shadow:0 0 10px rgba(163,34,26,.6)}
+.tkbar{position:relative;width:100%;height:14px;border-radius:7px;background:#000a;border:1px solid #4a3520;overflow:hidden}
+.tkbar i{position:absolute;inset:0 auto 0 0;transition:width .35s}.tkbar span{position:relative;display:block;font-size:10px;line-height:13px;color:#fff;text-shadow:0 1px 2px #000}
+.tkbar.hp i{background:linear-gradient(90deg,#8a1a1a,#d8402a)}.tkbar.mp i{background:linear-gradient(90deg,#1a3a8a,#3a7aff)}.tkbar.mh i{background:linear-gradient(90deg,#6a1010,#c0392b)}
+.tkfo{display:flex;gap:4px}.tkfo i{width:12px;height:12px;transform:rotate(45deg);border:1px solid #c8962e;background:#1a0f06}.tkfo i.on{background:#ffd25a;box-shadow:0 0 6px #ffd25a}
+.tkst{display:flex;flex-wrap:wrap;gap:3px;justify-content:center;min-height:18px}.tkch{font-size:10.5px;padding:1px 6px;border-radius:8px;border:1px solid}
+.tkch.bad{border-color:#a8402a;color:#ffb0a0;background:#3a100a}.tkch.good{border-color:#4a9a4a;color:#c0ffc0;background:#0f2a0f}.tkch.warn{border-color:#d8a020;color:#ffe08a;background:#3a2a05}
+.tki{display:flex;gap:10px;align-items:center;padding:8px 12px;border-radius:8px;border:1px solid #6a4a26;background:rgba(40,25,12,.7)}
+.tkii{font-size:26px;width:40px;height:40px;flex:none;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#1a0f06;border:1px solid #6a4a26}
+.tki.k-heavy,.tki.k-smash{border-color:#c0392b;background:rgba(80,15,10,.6)}.tki.k-smash .tkii{animation:tkpulse .8s infinite alternate}
+.tki.k-charge{border-color:#e8b830;background:rgba(70,50,8,.55)}.tki.k-guard,.tki.k-stun{border-color:#5a7a9a}.tki.k-heal{border-color:#4a9a4a}
+.tkd{color:#ffb0a0;font-size:12.5px}
+@keyframes tkpulse{from{box-shadow:0 0 0 #c0392b}to{box-shadow:0 0 14px #ff5a3a}}
+.tkl{min-height:76px;padding:6px 10px;border-radius:6px;background:#0008;font-size:13px;display:flex;flex-direction:column;gap:2px}
+.tkac,.tksk{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}.tksk{grid-template-columns:repeat(4,minmax(0,1fr))}
+.tkb{position:relative;display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 4px 6px;border:1px solid #8a6326;border-radius:8px;background:linear-gradient(180deg,#3a2614,#1d120a);color:#f0e2c0;font:inherit;cursor:pointer;min-width:0}
+.tkb:hover:not(:disabled){border-color:#ffd25a;background:linear-gradient(180deg,#5a3a18,#2a1a0c);transform:translateY(-1px)}.tkb:disabled{opacity:.4;cursor:default}
+.tkb b{font-size:13px}.tkb small{font-size:10.5px;color:#cdbb9a;line-height:1.2}.tkbi{font-size:20px;line-height:1}.tkb kbd{position:absolute;top:3px;right:5px;font-size:9px;color:#8a7a5a}
+.tkb.sk b{font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.dgnx{display:flex;align-items:center;gap:10px;padding:8px 10px;border:1px solid #6a4a26;border-radius:8px;background:rgba(0,0,0,.35);flex-wrap:wrap}.dgnxi{line-height:0}
+@media (max-width:620px){.tkac{grid-template-columns:repeat(3,minmax(0,1fr))}.tksk{grid-template-columns:repeat(2,minmax(0,1fr))}.tkpic{height:60px}.tkpic img{max-height:60px}.tkpic svg{width:56px;height:56px}}
 .svl{display:grid;gap:4px}.svr{display:flex;align-items:center;gap:10px;padding:6px 10px;border:1px solid rgba(200,150,46,.25);border-radius:6px;background:rgba(0,0,0,.2)}
 .svr.no{border-color:rgba(255,120,90,.5);background:rgba(120,30,10,.2)}.svi{width:24px;height:24px;flex:none;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;font-weight:700}
 .svr.ok .svi{background:#2a5a2a;color:#bfffbf}.svr.no .svi{background:#6a1a10;color:#ffd0c0}.svf{font:12px monospace;color:#ffd0a0;background:rgba(0,0,0,.35);padding:2px 6px;border-radius:4px}
@@ -868,7 +896,6 @@ function fx(){const f={str:{},st:{str:0,dex:0,vit:0,int:0},exp:0,yang:0,drop:0,t
  const now=Date.now();for(const id in S.buf||{})if(S.buf[id]>now){const d=SKL[id],l=S.ks[id]||0;for(const k in d.e){const v=iv(d.e[k],l);if(k=="spd")f.spd+=v;else if(k=="refl")f.refl2+=v;else if(k=="flame")f.flame+=v;else if(k in f)f[k]+=v}}
  {const pa=petAct();if(pa)for(const[k,v]of petBon(pa).concat(petSkB(pa)))f[k]+=v}
  gsFx(f);
- if(S.dg&&S.dg.bl&&typeof dgBlessFx=="function")dgBlessFx(f);
  // Beweglichkeit: je 5 DEX +1 % kritische Treffer (max. 20 %), je 8 DEX +1 % Ausweichen (max. 15 %)
  if(S.st){const dx=S.st.dex+f.st.dex;f.crit+=Math.min(20,dx/5);f.eva+=Math.min(15,dx/8)}
  return f}
@@ -945,7 +972,7 @@ function readSoul(id){const l=S.ks[id]||0;if(!(S.ss>0)||l<31||l>40||!(S.rd[id]<=
  const msg=ok?"Seelenstein: "+n+" steigt auf "+skL(l+1):"Seelenstein für "+n+" ohne Erfolg";addLog(msg);skMsg=msg;toast(msg,ok?"big":"");save();R()}
 function dropBook(){const pool=SKL.map((d,i)=>i).filter(i=>SKL[i].c==S.c&&(S.le==null||SKL[i].d==S.le));const id=pool[Math.floor(Math.random()*pool.length)];S.bk[id]=(S.bk[id]||0)+1;return id}
 
-function fight(i,silent){if(F&&!F.end)return;const m=MO[i];if(m.dg!=null?!(S.dg&&S.dg.id==m.dg&&i==dgTarget()):(S.dg||S.lvl<AR[m.a].lv)||S.hp<1||!alive(i))return;const ms=mStat(m);
+function fight(i,silent){if(F&&!F.end)return;const m=MO[i];if(m.dg!=null&&S.dg)return tFight(i);if(m.dg!=null?!(S.dg&&S.dg.id==m.dg&&i==dgTarget()):(S.dg||S.lvl<AR[m.a].lv)||S.hp<1||!alive(i))return;const ms=mStat(m);
  F={i,mh:ms.tp,mx:ms.tp,log:[],all:[],end:0,r:{rd:0,dd:0,dt:0,mx:0,cr:0,pe:0,ex:0,bl:0,hl:0,hits:0,mh:0,hp0:Math.round(S.hp)},res:{xp:0,g:0,loot:[],sold:[],sc:0,lv:0,lost:0,bon:[]}};
  flog("Kampf gegen "+m.n+" beginnt.");if(!silent)pop=i;clearInterval(ft);ft=setInterval(round,600);R()}
 function flog(t){F.log.unshift(t);F.log=F.log.slice(0,6);F.all.push((F.r.rd?"Runde "+F.r.rd+": ":"")+t)}
@@ -977,8 +1004,7 @@ function round(){if(!F||F.end)return;const m=MO[F.i],ms=mStat(m),st=stat(),f=fx(
   if(f.cmp&&Math.random()*100<f.cmp)S.mp=Math.min(st.mp,S.mp+Math.round(st.mp*.1));flog("Du triffst für "+d+(c?" (kritisch!)":"")+(pe?" (durchbohrend)":"")+(k?" (Zusatzangriff)":""))}}
  if(f.flame&&F.mh>0){const d=hit(pa*(.6+f.flame/1500)*.35,ms.d);dmgMon(d,r);flog("Geist der Flamme trifft für "+d)}
  if(F.mh<=0)return win();
- if(dgF&&dgSpec(m,ms,st,r));
- else if(F.st>0){F.st--;flog(m.n+" ist ohnmächtig und greift nicht an")}
+ if(F.st>0){F.st--;flog(m.n+" ist ohnmächtig und greift nicht an")}
  else if(F.sl>0&&(F.sl--,Math.random()<.5))flog(m.n+" ist verlangsamt und kommt nicht zum Angriff");
  else if(F.inv>0){F.inv--;flog("Unbesiegbarkeit: Der Angriff von "+m.n+" prallt ab");fnum("fz-p","Unbesiegbar","ms")}
  else if(pskL("unbes")&&Math.random()*100<.5*pskL("unbes")){F.inv=1;flog("Unbesiegbarkeit! Dein Pet schützt dich vor den nächsten 2 Angriffen");fnum("fz-p","Unbesiegbar","ms")}
@@ -996,7 +1022,6 @@ function round(){if(!F||F.end)return;const m=MO[F.i],ms=mStat(m),st=stat(),f=fx(
   // Pet: Erneuerung unter 20 % TP (Abklingzeit 60 s)
   {const el=pskL("erneu");if(el&&S.hp>0&&S.hp<st.tp*.2&&Date.now()>(S.pcd||0)){const h=Math.min(st.tp-S.hp,Math.round(st.tp*(10+2*el)/100));S.hp+=h;r.hl+=h;S.pcd=Date.now()+60000;fnum("fz-p","+"+h,"hl");flog("Erneuerung: Dein Pet stellt "+h+" TP wieder her")}}
   if(S.hp>0&&Math.random()*100<f.ctp){const h=Math.min(Math.round(st.tp*.1),st.tp-S.hp);S.hp+=h;r.hl+=h;fnum("fz-p","+"+h,"hl");flog("Du stellst "+h+" TP wieder her")}}
- if(dgF)dgRound(r.dd-dd0,r.dt-dt0);
  if(S.hp>0)autoPot();if(S.hp<=0)return lose();
  updFight()}
 function addLog(t){S.log.unshift(t);S.log=S.log.slice(0,6)}
@@ -1361,7 +1386,6 @@ function regen(){if(!S)return;alTick();
  const rf=S.dg?RL().dgF/100:1;if(S.hp<tp){S.hp=Math.min(tp,S.hp+Math.ceil(tp*RL().tpR/100*rf*(1+fx().reg/100)));save()}
  const mpm=stat().mp;if(S.mp<mpm){S.mp=Math.min(mpm,S.mp+Math.ceil(mpm*RL().mpR/100*rf*(1+fx().mreg/100)))}
  if(S.autoSk&&!(F&&!F.end))autoBuffs();
- if(auto&&S.dg&&!S.dg.pick&&F&&F.end==1&&S.hp>=tp*.6){const t=dgTarget();if(t!=null){fight(t,1);return}}
  if(auto&&!S.dg&&F&&F.end==1&&S.hp>=tp*.6&&alive(F.i)){fight(F.i,1);return}
  if(huntStep())return;
  updFight()}
@@ -1369,8 +1393,6 @@ function updFight(){const tp=stat().tp,mpm=stat().mp;for(const[t,b]of[["pmt","pm
  if(F&&$("frd"))$("frd").textContent=F.r.rd;
  if(!F)return;const mt=$("mht"),mb=$("mhb"),lg=$("flog");if(mt)mt.textContent=Math.max(0,F.mh)+" / "+F.mx;if(mb)mb.style.width=Math.max(0,F.mh)/F.mx*100+"%";
  if(lg)lg.innerHTML=F.log.map(x=>`<div class="m">${x}</div>`).join("");
- const dx=$("dgfx");if(dx&&typeof dgFxHtml=="function"){const h=dgFxHtml();if(dx.dataset.h!=h){dx.innerHTML=h;dx.dataset.h=h}}
- const ar=document.querySelector(".arena.dga");if(ar)ar.classList.toggle("dgcharge",!!(F.sp&&!F.end));
  const bb=document.querySelector(".bfb");if(bb&&typeof bfBar=="function"){const n=Date.now(),k=Object.keys(S.buf||{}).filter(i=>S.buf[i]>n).join(",")+"|"+Object.keys(IBK).filter(ibOn).join(",");if(bb.dataset.k!=k){bb.outerHTML=bfBar();const nb=document.querySelector(".bfb");if(nb)nb.dataset.k=k}}}
 const hs=t=>{let h=2166136261;for(const c of t){h^=c.charCodeAt(0);h=Math.imul(h,16777619)}h^=h>>>13;h=Math.imul(h,1540483477);return(h^h>>>15)>>>0};
 const DC=["var(--c1)","var(--c3)","#c0392b"],DK={up:0,r3:1,dn:2};
@@ -1540,7 +1562,7 @@ function fightHtml(){const tp=stat().tp,ar=AR[S.ar],busy=F&&!F.end;
   <label class="m"><input type="checkbox" ${S.autoSk?"checked":""} onchange="S.autoSk=this.checked;save()"> Fertigkeiten automatisch einsetzen (Buffs erneuern, stärksten Angriff nutzen, Kurieren unter 60 % TP)</label>
   ${hunting()?"":`<div class="fst" aria-live="polite">${busy?`<span>⚔ Kampf läuft gegen <b>${MO[F.i].n}</b></span><button class="btn s" onclick="openM(${F.i})">Kampf anzeigen</button>`:F&&F.end?`<span class="m">Letzter Kampf: ${MO[F.i].n} · ${["","Sieg","Niederlage","Geflohen"][F.end]}</span><button class="btn s" onclick="openM(${F.i})">Kampfbericht</button>`:`<span class="m">Kein Kampf aktiv · klicke ein Monster auf der Karte an</span>`}</div>`}
   ${typeof evBar=="function"?evBar():""}${huntHtml()}${bfBar()}${S.dg?dungeonHtml():sceneHtml()}
-  <label class="m"><input type="checkbox" ${auto?"checked":""} onchange="auto=this.checked;R()"> Auto-Kampf: ${S.dg?"im Dungeon automatisch den nächsten Gegner angreifen":"denselben Gegner erneut angreifen, sobald er wieder erscheint"}, sobald deine TP bei mindestens 60 % sind</label></div>`}
+  ${S.dg?"":`<label class="m"><input type="checkbox" ${auto?"checked":""} onchange="auto=this.checked;R()"> Auto-Kampf: denselben Gegner erneut angreifen, sobald er wieder erscheint, sobald deine TP bei mindestens 60 % sind</label>`}</div>`}
 function skbHtml(){const l=mySk().filter(id=>S.ks[id]>0);if(!l.length)return S.le==null&&S.lvl>=5?'<a class="m" href="#fertigkeiten">Wähle eine Lehre, um Fertigkeiten zu lernen.</a>':"";
  const now=Date.now(),busy=F&&!F.end;return l.map(id=>{const d=SKL[id],lv=S.ks[id],mp=skMp(id,lv),cd=S.skc[id]>now?Math.ceil((S.skc[id]-now)/1000):0,bf=S.buf[id]>now?Math.ceil((S.buf[id]-now)/1000):0,q=F&&F.q==id;
   return`<button class="btn${d.t=="a"?"":" s"} skbtn" ${cd||S.mp<mp||(d.t=="a"&&!busy)?"disabled":""} onclick="useSk(${id})" title="${d.tx}">${skIco(id,30)}<span>${d.n} ${skL(lv)}<br><span style="font-weight:400">${cd?cd+" s":q?"bereit…":mp+" MP"}${bf?" · aktiv "+bf+" s":""}</span></span></button>`}).join("")}
@@ -1555,8 +1577,8 @@ function popHtml(){if(pop==null||!S)return"";const m=MO[pop],ms=mStat(m),dg=dang
  const cdw=!alive(pop)?`<span class="m">Erscheint wieder in <span data-cd="${S.cd[pop]}">${Math.ceil((S.cd[pop]-Date.now())/1000)} s</span></span>`:"";
  const nt=S.dg?dgTarget():null,again=S.dg&&mine&&m.dg!=null?(nt!=null?`<button class="btn" ${S.hp<1||busy?"disabled":""} onclick="dgNext()">Weiter: ${MO[nt].n}</button>`:""):`<button class="btn" ${S.hp<1||busy||cdw||(m.dg!=null&&pop!=nt)?"disabled":""} onclick="fight(${pop})">${mine?"Nochmal kämpfen":"Kämpfen"}</button>${cdw}`;
  const autoL=`<label class="m"><input type="checkbox" ${auto?"checked":""} onchange="auto=this.checked"> Auto-Kampf</label>`;
- if(mine&&!mine.end){body=`<div class="arena${m.dg!=null?" dga":""}${m.dg!=null&&m.s==6?" dgboss":""}"><div class="fig" id="fz-p">${emb(S.c,60)}<span>Du</span></div><span class="vs">VS</span><div class="fig" id="fz-m">${mFig(m,"#c0392b")}<span>${m.n}</span></div></div>${pbar}<div class="m">TP ${m.n}: <span id="mht">${Math.max(0,F.mh)} / ${F.mx}</span></div><div class="bar"><i id="mhb" style="width:${Math.max(0,F.mh)/F.mx*100}%;background:#c0392b"></i></div>
-  ${m.dg!=null&&S.dg?`<div id="dgfx" class="stack">${dgFxHtml()}</div>`:""}
+ if(mine&&!mine.end&&mine.tk)body=tkHtml(m);
+ else if(mine&&!mine.end){body=`<div class="arena${m.dg!=null?" dga":""}${m.dg!=null&&m.s==6?" dgboss":""}"><div class="fig" id="fz-p">${emb(S.c,60)}<span>Du</span></div><span class="vs">VS</span><div class="fig" id="fz-m">${mFig(m,"#c0392b")}<span>${m.n}</span></div></div>${pbar}<div class="m">TP ${m.n}: <span id="mht">${Math.max(0,F.mh)} / ${F.mx}</span></div><div class="bar"><i id="mhb" style="width:${Math.max(0,F.mh)/F.mx*100}%;background:#c0392b"></i></div>
   <div class="m">Runde <span id="frd">${F.r.rd}</span></div><div id="flog" class="stack" aria-live="polite">${F.log.map(x=>`<div class="m">${x}</div>`).join("")}</div>
   <div class="skb">${skbHtml()}</div>${potBar()}<div class="row"><button class="btn s" onclick="flee()">Fliehen</button><button class="btn s" onclick="closeM()">Ausblenden</button>${autoL}</div>`}
  else if(mine){const r=mine.r,X=mine.res,res=["","Sieg","Niederlage","Geflohen"][mine.end];
@@ -1576,7 +1598,9 @@ function popHtml(){if(pop==null||!S)return"";const m=MO[pop],ms=mStat(m),dg=dang
   <div class="top"><div><h2 id="dlgt" style="margin:0">${m.n}</h2><span class="m">Stufe ${m.L} · ${m.e}${RK[m.s]?" · "+RK[m.s]:""}</span></div><button class="btn s" onclick="closeM()" aria-label="Schließen">✕</button></div>${body}</div></div>`}
 addEventListener("keydown",e=>{if((e.key=="i"||e.key=="I")&&S&&!e.ctrlKey&&!e.metaKey&&!e.altKey&&!/INPUT|TEXTAREA|SELECT/.test((document.activeElement||{}).tagName||"")){invToggle();return}
  if(typeof dgFight=="function"&&dgFight()&&pop!=null&&!/INPUT|TEXTAREA|SELECT/.test((document.activeElement||{}).tagName||"")){
-  if(e.key==" "||e.code=="Space"){e.preventDefault();dgDodge();return}if(e.key=="f"||e.key=="F"){e.preventDefault();dgFinish();return}}
+  // Taktischer Dungeon-Kampf: 1 Angriff, 2 Verteidigen, 3 Fokus-Schlag, 4 Heiltrank, 5 Manatrank, 6–9 Fertigkeiten
+  const n="123456789".indexOf(e.key);if(n>=0&&!e.ctrlKey&&!e.metaKey&&!e.altKey){e.preventDefault();
+   if(n<5)tkAct(["atk","def","fo","pot","pot"][n],n==3?"hp":n==4?"mp":undefined);else{const id=mySk().filter(x=>S.ks[x]>0&&SKL[x].t=="a")[n-5];if(id!=null)tkAct("sk",id)}return}}
  if(fsAsk!=null&&(e.key=="Enter"||e.key=="Escape")){e.preventDefault();e.stopPropagation();if(e.key=="Enter")fsDo(fsAsk);else{fsAsk=null;R()}return}
  if(e.key=="Enter"&&SB_URL&&SB_KEY&&!pnO&&!sbO&&!mailO&&!walO&&!shopO&&pop==null&&!/INPUT|TEXTAREA|SELECT|BUTTON|A/.test((document.activeElement||{}).tagName||"")){e.preventDefault();chOpen(1);return}
  if(e.key=="Escape"&&lfO){lfO=false;R();return}
@@ -2470,17 +2494,16 @@ function dgState(id){const d=DG[id],now=Date.now();if(S.lvl<d.lv)return["Ab Stuf
  if(d.daily){const c=S.dgd[id];if(c&&c.day==today()&&c.n>=d.daily)return["Heute keine Eintritte mehr",0]}
  if(d.at!=null&&S.ar!=d.at)return["Eingang in "+AR[d.at].n,0];
  if(F&&!F.end)return["Kampf läuft",0];if(S.dg)return["Du bist in einem Dungeon",0];return["Betreten",1]}
-function dgEnter(id){if(!dgState(id)[1])return;const d=DG[id];S.dg={id,f:0,k:0,got:0,t:Date.now(),bl:[],z:0,dt:0};dgOffer();F=null;auto=false;
+function dgEnter(id){if(!dgState(id)[1])return;const d=DG[id];S.dg={id,f:0,k:0,got:0,t:Date.now()};F=null;auto=false;
  if(d.daily){const c=S.dgd[id];S.dgd[id]=c&&c.day==today()?{day:c.day,n:c.n+1}:{day:today(),n:1}}
  addLog("Dungeon betreten: "+d.n);toast(d.n+": "+d.fl[0].t);save();location.hash="start";R()}
 function dgTarget(){const g=S.dg;if(!g)return null;const f=DG[g.id].fl[g.f];if(f.pick&&g.k>=f.ix.length)return f.pk;if(f.need)return f.ix[g.k%f.ix.length];return f.ix[g.k]}
 function dgWin(i){const g=S.dg,d=DG[g.id],f=d.fl[g.f];if(i!=dgTarget())return;let done=false;
- if(dgHas("quelle")){const st=stat(),h=Math.min(st.tp-S.hp,Math.round(st.tp*.3));if(h>0){S.hp+=h;toast("Lebensquelle: +"+h+" TP")}}
  if(f.need){g.k++;if(Math.random()<f.ch){g.got++;toast(f.item+" gefunden ("+g.got+"/"+f.need+")","loot3")}if(g.got>=f.need)done=true}
  else if(f.pick&&g.k>=f.ix.length){g.k++;if(Math.random()<1/3||g.k-f.ix.length>=3)done=true;else toast("Falscher Metin des Sturzes, ein weiterer erscheint")}
  else{g.k++;if(g.k>=f.ix.length&&!f.pick)done=true}
  if(done){if(f.fu){if(S.lvl>=75){S.fu=(S.fu||0)+1;toast("Der Schmied des Dämonenturms bietet dir eine kostenlose Verbesserung an","loot3")}else toast("Der Schmied des Dämonenturms spricht erst ab Stufe 75 mit dir")}
-  g.f++;g.k=0;g.got=0;if(g.f>=d.fl.length)return dgClear();dgOffer();toast(d.n+": "+d.fl[g.f].t)}}
+  g.f++;g.k=0;g.got=0;if(g.f>=d.fl.length)return dgClear();toast(d.n+": Etage "+(g.f+1)+" · "+d.fl[g.f].t)}}
 // ---- Truhen (Konfiguration → Truhen). CFG.ch[Dungeonname] = {n: Name, d: [Einträge]}. Ohne Eintrag gilt der Standardinhalt.
 // Eintrag: {t:"rand", n, ch} zufällige Ausrüstung in Bossqualität · {t:"eq", s, i, u, r, n, ch} bestimmte Ausrüstung
 //          {t:"misc", k, n, ch} Gegenstand aus „Sonstige“ · {t:"yang", n, ch} Yang. ch = Chance in Prozent, n = Anzahl.
@@ -2506,16 +2529,15 @@ function trOpen(id,rkI,rkY){const d=DG[id],C=trCfg(id),boss=dgBoss(d),got=[];
  return{name:C.n,got}}
 function dgClear(){const g=S.dg,d=DG[g.id],got=[];S.dg=null;
  if(d.cd)S.dgc[g.id]=Date.now()+d.cd*6e4;
- const[rk,rkI,rkY]=dgRank(g,d),ok=!d.chestLv||S.lvl>=d.chestLv,chest=trCfg(g.id).n;
- if(ok){const r=trOpen(g.id,rkI,rkY);got.push(...r.got);if(!got.length)got.push("leer – diesmal kein Glück")}
+ const ok=!d.chestLv||S.lvl>=d.chestLv,chest=trCfg(g.id).n;
+ if(ok){const r=trOpen(g.id,0,1);got.push(...r.got);if(!got.length)got.push("leer – diesmal kein Glück")}
  const min=Math.max(1,Math.round((Date.now()-g.t)/6e4));
- S.dgr=S.dgr||{};const best=S.dgr[g.id];if(!best||"SABC".indexOf(rk)<"SABC".indexOf(best))S.dgr[g.id]=rk;
- addLog(d.n+" abgeschlossen ("+min+" Min, Wertung "+rk+")"+(ok?" · "+chest+": "+got.join(", ").replace(/<[^>]+>/g,""):""));
- toast(`${d.n} abgeschlossen! <span class="dgrk r-${rk}">${rk}</span><br><span class="m">${min} Min · ${fmtN(Math.round(g.dt||0))} Schaden eingesteckt${rkI||rkY>1?" · Bonus: "+(rkI?"+"+rkI+" Item"+(rkI>1?"s":"")+", ":"")+"Yang ×"+String(rkY).replace(".",","):""}</span>`,"big");if(ok)toast(`<span class="il">${trIco(g.id,32)}<span><b>${chest}</b>: ${got.join(", ")}</span></span>`,"loot3");else toast(chest+" öffnet sich erst ab Stufe "+d.chestLv);
+ addLog(d.n+" abgeschlossen ("+min+" Min)"+(ok?" · "+chest+": "+got.join(", ").replace(/<[^>]+>/g,""):""));
+ toast(`🏆 <b>${d.n} abgeschlossen!</b><br><span class="m">${min} Min</span>`,"big");if(ok)toast(`<span class="il">${trIco(g.id,32)}<span><b>${chest}</b>: ${got.join(", ")}</span></span>`,"loot3");else toast(chest+" öffnet sich erst ab Stufe "+d.chestLv);
  qEvent("dg",g.id);save()}
 let dgArmed=false;
 function dgLeave(){if(!S.dg)return;if(F&&!F.end)return;if(!dgArmed){dgArmed=true;R();return}dgArmed=false;addLog("Dungeon verlassen: "+DG[S.dg.id].n);S.dg=null;F=null;auto=false;save();R()}
-function dgNext(){if(S.dg&&S.dg.pick){toast("Wähle zuerst einen Segen");return}const t=dgTarget();if(t!=null)fight(t)}
+function dgNext(){const t=dgTarget();if(t!=null)tFight(t)}
 function dungeonHtml(){const g=S.dg,d=DG[g.id],busy=F&&!F.end,t=dgTarget(),th=TH[d.th];
  const pts=Array.from({length:12},(_,k)=>{const j=hs("d"+g.id+k);return`<i class="pt ${th.pt}" style="left:${j%100}%;top:${80+(j>>8)%20}%;--du:${6+(j>>4)%7}s;--de:-${(j>>12)%9}s"></i>`}).join("");
  const rows=d.fl.map((f,fi)=>{const st=fi<g.f?"done":fi==g.f?"cur":"lock";
@@ -2524,71 +2546,129 @@ function dungeonHtml(){const g=S.dg,d=DG[g.id],busy=F&&!F.end,t=dgTarget(),th=TH
  return`<div class="scene dgsc" style="background:${th.bg};padding:14px">${pts}<div style="position:relative;z-index:1" class="stack">
   <div class="top"><div><h2 style="margin:0">${d.n}</h2><span class="m">${d.sub} · Etage ${g.f+1} von ${d.fl.length}</span></div><button class="btn s" ${busy?"disabled":""} onclick="dgLeave()">${dgArmed?"Wirklich verlassen?":"Dungeon verlassen"}</button></div>
   <div class="bar exp"><i style="width:${g.f/d.fl.length*100}%"></i></div>
-  ${dgPickHtml()}
-  <div class="dgst"><span>⏱ <b data-dgt="${g.t}">${Math.floor((Date.now()-g.t)/6e4)} Min</b></span><span>🐉 Drachenzorn <b>${Math.floor(g.z||0)} %</b></span><span>💢 eingesteckt <b>${fmtN(Math.round(g.dt||0))}</b></span>${S.dgr&&S.dgr[g.id]?`<span>Bestwertung <b class="dgrk r-${S.dgr[g.id]}">${S.dgr[g.id]}</b></span>`:""}</div>
-  ${(g.bl||[]).length?`<div class="dgbl">${g.bl.map(k=>`<span style="--c:${DGB[k].c}" title="${DGB[k].tx}">${DGB[k].n}: ${DGB[k].tx}</span>`).join("")}</div>`:""}
   ${rows}
-  ${t!=null?`<div class="row"><b>Nächster Gegner:</b> ${MO[t].n} <span class="m">Stufe ${MO[t].L}${MO[t].s>=3?" · kann Spezialangriffe":""}</span><button class="btn" ${busy||S.hp<1?"disabled":""} onclick="openM(${t})">Ansehen</button><button class="btn" ${busy||S.hp<1||g.pick?"disabled":""} onclick="dgNext()">Angreifen</button></div>`:""}
-  <div class="m">So funktioniert der Dungeon: Wähle vor jeder Etage einen Segen. Starke Gegner und Bosse holen zu Spezialangriffen aus: rechtzeitig <b>Ausweichen</b> (Leertaste), sonst gibt es heftigen Schaden; eine Ohnmacht-Fertigkeit unterbricht sie. Schaden füllt den <b>Drachenzorn</b>; voll entfesselst du einen Finisher (F). Bosse werden bei 50 % und 20 % TP wütender. Am Ende gibt es eine Wertung (S bis C) nach Zeit und eingestecktem Schaden; S und A bringen Bonus-Beute. Im Dungeon regenerieren TP und MP nur ein Drittel so schnell, eine Niederlage beendet den Dungeon.</div></div></div>`}
+  ${t!=null?`<div class="dgnx"><span class="dgnxi">${mIcon(MO[t],isBoss(MO[t])?"#c0392b":DC[DK[danger(MO[t])[1]]])}</span><div style="flex:1;min-width:0"><span class="m">Nächster Gegner</span><br><b>${MO[t].n}</b> <span class="m">Stufe ${MO[t].L}${isBoss(MO[t])?" · Boss":MO[t].s>=3?" · starker Gegner":""}</span></div>
+   ${busy?`<button class="btn" onclick="openM(${F.i})">Zum Kampf</button>`:`<button class="btn s" ${S.hp<1?"disabled":""} onclick="openM(${t})">Ansehen</button><button class="btn" ${S.hp<1?"disabled":""} onclick="dgNext()">⚔ Kampf beginnen</button>`}</div>`:""}
+  <div class="m">So funktioniert der Dungeon-Kampf: Du kämpfst Zug um Zug und hast für jede Entscheidung so viel Zeit, wie du willst. Der Gegner zeigt vorher an, was er vorhat. <b>Angriff</b> und <b>Verteidigen</b> sammeln Fokus, der <b>Fokus-Schlag</b> durchbricht die Abwehr und unterbricht das Aufladen. Verteidige gegen schwere Schläge, heile, wenn der Gegner in Deckung geht. Im Dungeon regenerieren TP und MP langsamer, eine Niederlage beendet den Dungeon. Am Ende wartet die Truhe.</div></div></div>`}
 function dgListHtml(){return`<div class="card stack" style="margin-top:14px"><h2>Dungeons</h2><div class="cols" style="margin-top:0">${DG.map((d,i)=>{const[s,ok]=dgState(i),boss=MO[d.fl[d.fl.length-1].ix.slice(-1)[0]];
  return`<div class="card stack"><div class="top"><div><b>${d.n}</b><br><span class="m">${d.sub}</span></div><div class="row" style="gap:4px;flex-wrap:nowrap" title="Boss und Belohnungstruhe">${mIcon(boss,"#c0392b")}${trIco(i,38)}</div></div>
   <div class="m">Ab Stufe ${d.lv} · ${d.fl.length} ${d.fl.length>4?"Etagen":"Abschnitte"} · Boss: ${boss.n} (Stufe ${boss.L})</div>
   <div class="m">${d.at!=null?"Eingang: "+AR[d.at].n+" · ":""}${d.daily?"höchstens "+d.daily+" Eintritte pro Tag":"Wartezeit "+d.cd+" Min"} · Belohnung: ${trCfg(i).n}${d.chestLv?" (ab Stufe "+d.chestLv+")":""}</div>
   <button class="btn" ${ok?"":"disabled"} onclick="dgEnter(${i})">${s}</button></div>`}).join("")}</div></div>`}
 // ============================================================
-// ---- Dungeon-Kampfsystem: Segen, angekündigte Spezialangriffe, Drachenzorn, Boss-Phasen, Wertung ----
-// S.dg zusätzlich: bl = gewählte Segen, pick = 3 Segen zur Auswahl (vor dem nächsten Kampf), z = Drachenzorn 0–100, dt = eingesteckter Schaden.
-// Im Kampf (F): sp = laufender Spezialangriff {n, t Runden bis zum Treffer, mx, mult}, dodge = rechtzeitig ausgewichen, ph = Boss-Phase, atkM = Angriffsfaktor.
-const DGB={
- klinge:{n:"Klingensegen",tx:"+20 % Schaden",fx:f=>f.dmg+=20,c:"#ff7a5a"},
- blut:{n:"Blutdurst",tx:"6 % des Schadens als TP zurück",fx:f=>f.steal+=6,c:"#d8263c"},
- stein:{n:"Steinhaut",tx:"+15 % Schadensreduktion",fx:f=>f.dmgred+=15,c:"#a8a090"},
- auge:{n:"Falkenauge",tx:"+12 % kritische Treffer",fx:f=>f.crit+=12,c:"#ffd25a"},
- wind:{n:"Windschritt",tx:"+12 % Ausweichen",fx:f=>f.eva+=12,c:"#8af0d0"},
- rausch:{n:"Kampfrausch",tx:"+15 % Angriffsgeschwindigkeit",fx:f=>f.spd+=15,c:"#ffa040"},
- herz:{n:"Drachenherz",tx:"Drachenzorn füllt sich doppelt so schnell",c:"#ff4a2a"},
- quelle:{n:"Lebensquelle",tx:"Nach jedem Sieg 30 % TP zurück",c:"#5ad87a"},
- geist:{n:"Geistesruhe",tx:"Jede Kampfrunde 3 % MP zurück",c:"#8ab8ff"}};
-const DGSP=["Erdstoß","Wirbelangriff","Sturmangriff","Vernichtender Schlag","Raserei","Knochenbrecher"];
-const dgHas=k=>!!(S.dg&&S.dg.bl&&S.dg.bl.includes(k));
-function dgBlessFx(f){for(const k of S.dg.bl||[])if(DGB[k]&&DGB[k].fx)DGB[k].fx(f)}
-function dgOffer(){const g=S.dg,own=g.bl||[],pool=Object.keys(DGB).filter(k=>!own.includes(k));const o=[];while(o.length<3&&pool.length)o.push(pool.splice(Math.floor(Math.random()*pool.length),1)[0]);g.pick=o.length?o:null}
-function dgChoose(k){const g=S.dg;if(!g||!g.pick||!g.pick.includes(k))return;g.bl=(g.bl||[]).concat(k);g.pick=null;toast(il("dgate","Segen erhalten: <b>"+DGB[k].n+"</b> · "+DGB[k].tx,26),"loot3");save();R()}
-const dgFight=()=>!!(F&&!F.end&&S.dg&&MO[F.i].dg!=null);
-// Wird in round() vor dem Gegnerangriff aufgerufen. true = der Gegner nutzt diese Runde für den Spezialangriff (kein normaler Angriff).
-function dgSpec(m,ms,st,r){
- // Boss-Phasen
- if(m.s==6){if(!F.ph&&F.mh<=F.mx*.5){F.ph=1;F.atkM=1.3;F.bn=m.n+" gerät in Raserei!";F.bnT=Date.now();flog("⚠ Phase 2: "+m.n+" gerät in Raserei (+30 % Angriff)")}
-  else if(F.ph==1&&F.mh<=F.mx*.2){F.ph=2;F.atkM=1.55;F.bn="Letzter Widerstand!";F.bnT=Date.now();flog("⚠ Phase 3: "+m.n+" sammelt seine letzte Kraft (+55 % Angriff)")}}
- if(F.sp){if(F.st>0){flog("Deine Ohnmacht-Fertigkeit unterbricht „"+F.sp.n+"“!");F.sp=null;S.dg.z=Math.min(100,(S.dg.z||0)+15);return false}
-  F.sp.t--;if(F.sp.t>0){return true}
-  const sp=F.sp;F.sp=null;
-  if(F.dodge){flog("Du weichst „"+sp.n+"“ geschickt aus!");fnum("fz-p","Ausgewichen!","ms");S.dg.z=Math.min(100,(S.dg.z||0)+25);F.dodge=false;return true}
-  const d=Math.max(1,Math.round(hit(ms.a*(F.atkM||1)*sp.mult,st.d)*(1-Math.min(50,fx().dmgred)/100)));S.hp-=d;r.dt+=d;r.mh=Math.max(r.mh,d);fnum("fz-p","-"+d,"crit");flog("💥 "+sp.n+" trifft dich mit voller Wucht für "+d+"!");return true}
- if(m.s>=3&&r.rd>2&&!(F.st>0)){const ch=m.s==6?(F.ph?.3:.2):.12;if(Math.random()<ch){const t=2+(Math.random()<.5?1:0);F.sp={n:DGSP[Math.floor(Math.random()*DGSP.length)],t,mx:t,mult:m.s==6?3:2.2};F.dodge=false;
-  flog("⚠ "+m.n+" holt zu „"+F.sp.n+"“ aus! Weiche aus!");return true}}
- return false}
-function dgDodge(){if(!dgFight()||!F.sp||F.dodge)return;F.dodge=true;flog("Du machst dich bereit auszuweichen …");updFight()}
-// Drachenzorn-Finisher: ignoriert die Verteidigung, 5-facher Angriff (+ Fertigkeitsschaden)
-function dgFinish(){if(!dgFight()||(S.dg.z||0)<100)return;const m=MO[F.i],f=fx(),c=Math.random()*100<f.crit;let d=Math.round(pAtk(m)*5*(1+f.skd/100)*(.95+Math.random()*.1));if(c)d*=2;
- S.dg.z=0;dgAnimFinish();dmgMon(d,F.r,"crit");F.r.hits++;F.r.mx=Math.max(F.r.mx,d);flog("🐉 Drachenzorn entfesselt: "+d+" Schaden"+(c?" (kritisch!)":"")+"!");
- const a=document.querySelector(".arena");if(a){a.classList.remove("dgflash");void a.offsetWidth;a.classList.add("dgflash")}
- if(F.mh<=0){win();return}updFight()}
-// Nach jeder Kampfrunde: Zorn füllen (Schaden austeilen und einstecken), eingesteckten Schaden für die Wertung zählen
-function dgRound(dd,dt){const g=S.dg;const k=dgHas("herz")?2:1;g.z=Math.min(100,(g.z||0)+(dd/F.mx*85+dt/stat().tp*45)*k);g.dt=(g.dt||0)+dt;
- if(dgHas("geist"))S.mp=Math.min(stat().mp,S.mp+Math.ceil(stat().mp*.03))}
-function dgFxHtml(){if(!dgFight())return"";const g=S.dg,z=Math.floor(g.z||0),sp=F.sp,ban=F.bn&&Date.now()-F.bnT<4000;
- return`${ban?`<div class="dgban">⚠ ${F.bn}</div>`:""}
- ${sp?`<div class="dgsp${F.dodge?" ok":""}"><div><b>${MO[F.i].n}</b> holt zu <b>„${sp.n}“</b> aus!</div><div class="dgspb"><i style="width:${sp.t/sp.mx*100}%"></i></div>
-  <button class="btn dgdg" ${F.dodge?"disabled":""} onclick="dgDodge()">${F.dodge?"Bereit zum Ausweichen ✓":"Ausweichen! <span class=\"kbd\">Leertaste</span>"}</button></div>`:""}
- <div class="dgz"><span>🐉 Drachenzorn</span><div class="dgzb${z>=100?" full":""}"><i style="width:${z}%"></i></div><button class="btn dgfin" ${z>=100?"":"disabled"} onclick="dgFinish()">${z>=100?"Entfesseln! <span class=\"kbd\">F</span>":z+" %"}</button></div>
- ${(g.bl||[]).length?`<div class="dgbl">${g.bl.map(k=>`<span style="--c:${DGB[k].c}" title="${DGB[k].tx}">${DGB[k].n}</span>`).join("")}</div>`:""}`}
-// Wertung am Ende: S/A/B/C nach eingestecktem Schaden (in Vielfachen der max. TP) und Minuten pro Etage
-function dgRank(g,d){const tr=(g.dt||0)/stat().tp,mpf=(Date.now()-g.t)/6e4/d.fl.length;
- return tr<1.2&&mpf<1.5?["S",2,2]:tr<2.5&&mpf<2.5?["A",1,1.5]:tr<5?["B",0,1.2]:["C",0,1]}
-function dgPickHtml(){const g=S.dg;if(!g||!g.pick)return"";
- return`<div class="dgpk"><h3>${g.f==0?"Wähle einen Segen für deinen Weg":"Etage geschafft! Wähle einen Segen"}</h3><div class="dgpkl">${g.pick.map(k=>`<button class="dgcard" style="--c:${DGB[k].c}" onclick="dgChoose('${k}')"><b>${DGB[k].n}</b><span>${DGB[k].tx}</span></button>`).join("")}</div>
- <span class="m">Segen gelten bis zum Ende dieses Dungeons.</span></div>`}
+// ---- Dungeon-Kampf: taktisch und rundenbasiert ----
+// Im Dungeon kämpft man Zug um Zug, ohne Zeitdruck. Der Gegner zeigt vorher an, was er als Nächstes vorhat (F.it = Absicht).
+// Du wählst eine Aktion: Angriff (+1 Fokus), Verteidigen (−60 % Schaden, +1 Fokus, +5 % MP), Fokus-Schlag (3 Fokus,
+// ignoriert die Verteidigung, unterbricht Aufladen), Fertigkeit (MP, Abklingzeit in Zügen, Ohnmacht unterbricht) oder Trank.
+// Danach handelt der Gegner. Starke Gegner und Bosse haben mehr Absichten, Bosse werden bei 50 % und 25 % TP stärker.
+// F zusätzlich: tk = 1, it = Absicht {k}, fo = Fokus 0–5, def = verteidigt, cdT = {Fertigkeit: Züge}, busy = Animation läuft,
+// ph = Boss-Phase, atkM = Angriffsfaktor, hc = Heilungen des Bosses, fxq = Animationen nach dem Neuzeichnen.
+const TKI={
+ atk:{n:"Angriff",ic:"⚔",m:1,tx:"greift normal an."},
+ heavy:{n:"Schwerer Schlag",ic:"🔨",m:1.9,tx:"holt zu einem schweren Schlag aus. Verteidigen hilft!"},
+ charge:{n:"Lädt auf",ic:"⚡",m:0,tx:"sammelt Kraft für einen Vernichtungsschlag im nächsten Zug. Mit Fokus-Schlag oder einer Ohnmacht-Fertigkeit unterbrechen!"},
+ smash:{n:"Vernichtungsschlag",ic:"💥",m:2.6,tx:"entfesselt einen Vernichtungsschlag. Verteidigen oder mit Fokus-Schlag bzw. Ohnmacht unterbrechen!"},
+ guard:{n:"Abwehr",ic:"🛡",m:0,tx:"geht in Deckung und nimmt in diesem Zug nur halben Schaden. Gute Gelegenheit zum Heilen oder Verteidigen."},
+ poison:{n:"Giftangriff",ic:"☠",m:.7,tx:"greift mit Gift an. Das Gift schadet dir 3 Züge lang."},
+ heal:{n:"Regeneration",ic:"✚",m:0,tx:"heilt sich um 12 % seiner TP. Jetzt viel Schaden machen!"},
+ stun:{n:"Benommen",ic:"💫",m:0,tx:"ist benommen und setzt diesen Zug aus."}};
+const dgFight=()=>!!(F&&!F.end&&F.tk);
+// Nächste Absicht des Gegners auswürfeln (nach Aufladen folgt immer der Vernichtungsschlag)
+function tkRoll(m){if(F.it&&F.it.k=="charge")return{k:"smash"};
+ const boss=isBoss(m),el=m.s>=3,w=[["atk",60],["heavy",el?18:12],["guard",12]];
+ if(el)w.push(["charge",boss?14:9],["poison",9]);if(boss&&F.mh<F.mx*.7&&F.hc<2)w.push(["heal",7]);
+ let t=w.reduce((a,x)=>a+x[1],0)*Math.random();for(const[k,v]of w){t-=v;if(t<0)return{k}}return{k:"atk"}}
+// Geschätzter Schaden einer Absicht (für die Anzeige)
+function tkEst(m,k){const ms=mStat(m),st=stat(),f=fx();return Math.round(ms.a*(F.atkM||1)*TKI[k].m*ms.a*(F.atkM||1)*TKI[k].m/(ms.a*(F.atkM||1)*TKI[k].m+st.d)*(1-Math.min(50,f.dmgred)/100))}
+const tkCd=id=>{const d=SKL[id],l=S.ks[id]||1,cd=iv(Array.isArray(d.cd)?d.cd:[d.cd,d.cd,d.cd,d.cd],l)*(1-Math.min(60,fx().cdr)/100);return Math.max(1,Math.min(6,Math.round(cd/4)))};
+const tkPot=t=>{const l=POT.filter(p=>p.t==t&&potN(p.k)>0).sort((a,b)=>b.v-a.v);return l.length?l[0].k:null};
+const tkPotN=t=>POT.filter(p=>p.t==t).reduce((a,p)=>a+potN(p.k),0);
+function tkPlay(){if(!F)return;const q=F.fxq||[];F.fxq=[];for(const[a,b,c]of q)fnum(a,b,c)}
+// Taktischen Kampf gegen den aktuellen Dungeon-Gegner beginnen
+// Weniger TP als im normalen Kampf, weil jeder Zug eine Entscheidung ist. Ziel: normale Gegner ~4 Züge, starke ~6–9, Bosse ~15.
+const tkHpF=m=>isBoss(m)?.4:m.s>=3?.45:.55;
+function tFight(i){if(F&&!F.end)return;const m=MO[i];if(!S.dg||i!=dgTarget()||S.hp<1)return;const ms=mStat(m),hp=Math.max(1,Math.round(ms.tp*tkHpF(m)));clearInterval(ft);
+ F={i,tk:1,mh:hp,mx:hp,log:[],all:[],end:0,fo:0,cdT:{},def:false,busy:false,hc:0,fxq:[],r:{rd:0,dd:0,dt:0,mx:0,cr:0,pe:0,ex:0,bl:0,hl:0,hits:0,mh:0,hp0:Math.round(S.hp)},res:{xp:0,g:0,loot:[],sold:[],sc:0,lv:0,lost:0,bon:[]}};
+ flog((isBoss(m)?"👑 Bosskampf: ":"Kampf gegen ")+m.n+" beginnt.");pop=i;auto=false;
+ const f=fx();if(f.open>0){const d=Math.max(1,hit(pAtk(m)*f.open/100,ms.d));F.mh=Math.max(1,F.mh-d);F.r.dd+=d;flog("Reichweite: Dein Fernangriff trifft für "+d);F.fxq.push(["fz-m","-"+d,"dm"])}
+ F.it=tkRoll(m);R();tkPlay();const d=$("dlg");if(d)d.focus()}
+// Ein Treffer des Spielers. mult = Schadensfaktor; o.sk = Fertigkeit, o.ig = Verteidigung ignorieren, o.lab = Beschriftung
+function tkHit(m,mult,o){o=o||{};const f=fx(),ms=mStat(m),st=stat(),r=F.r;let def=ms.d;if(F.mb>0)def=Math.round(def*.5);if(F.it&&F.it.k=="guard")mult*=.5;
+ const pe=!o.ig&&Math.random()*100<f.pen,pa=pAtk(m)*mult*(o.sk?1+f.skd/100:1);let d=o.ig||pe?Math.round(pa*(.9+Math.random()*.2)):hit(pa,def);
+ if(f.dss&&!o.sk)d=Math.max(1,Math.round(d*(1+f.dss/100)));const c=Math.random()*100<f.crit;if(c)d*=2;
+ F.mh-=d;r.dd+=d;r.hits++;r.mx=Math.max(r.mx,d);if(c)r.cr++;if(pe)r.pe++;F.fxq.push(["fz-m",(o.lab?o.lab+" ":"")+"-"+d,c?"crit":o.sk?"sk":"dm"]);
+ if(f.steal&&S.hp<st.tp){const h=Math.min(st.tp-S.hp,Math.round(d*f.steal/100));if(h>0){S.hp+=h;r.hl+=h}}
+ if(f.mdr)S.mp=Math.min(st.mp,S.mp+Math.round(d*f.mdr/100));
+ if(f.mbrk&&!(F.mb>0)&&Math.random()*100<f.mbrk){F.mb=2;flog("Magiebruch: Die Abwehr von "+m.n+" ist für 2 Züge gebrochen!")}
+ return{d,c,pe}}
+// Aktion des Spielers: atk, def, fo, sk (arg = Fertigkeit), pot (arg = "hp"/"mp")
+function tkAct(a,arg){if(!dgFight()||F.busy||S.hp<=0)return;const m=MO[F.i],st=stat(),f=fx();F.fxq=[];let txt="";
+ if(a=="atk"){const n=1+(Math.random()*100<Math.min(50,f.spd)?1:0);for(let k=0;k<n&&F.mh>0;k++){const h=tkHit(m,1);if(k)F.r.ex++;txt+=(k?" · Zusatzangriff: ":"Du triffst für ")+h.d+(h.c?" (kritisch!)":"")+(h.pe?" (durchbohrend)":"")}
+  F.fo=Math.min(5,F.fo+1);if(f.cmp&&Math.random()*100<f.cmp)S.mp=Math.min(st.mp,S.mp+Math.round(st.mp*.1))}
+ else if(a=="def"){F.def=true;F.fo=Math.min(5,F.fo+1);const g=Math.ceil(st.mp*.05);S.mp=Math.min(st.mp,S.mp+g);txt="Du gehst in Verteidigung (−60 % Schaden in diesem Zug, +"+g+" MP)";F.fxq.push(["fz-p","Verteidigung","ms"])}
+ else if(a=="fo"){if(F.fo<3)return;F.fo-=3;const h=tkHit(m,2.5,{ig:1,lab:"Fokus"});txt="✴ Fokus-Schlag: "+h.d+" Schaden"+(h.c?" (kritisch!)":"");if(F.it&&(F.it.k=="charge"||F.it.k=="smash")){F.it={k:"stun"};txt+=" · Angriff unterbrochen!"}}
+ else if(a=="sk"){const id=+arg,d0=SKL[id],l=S.ks[id]||0,mp=l?skMp(id,l):0;if(!d0||!l||d0.t!="a"||S.mp<mp||(F.cdT[id]||0)>0)return;
+  S.mp-=mp;F.r.sku=(F.r.sku||0)+1;F.r.mpu=(F.r.mpu||0)+mp;const ig=!!(d0.x&&d0.x.igdef&&Math.random()*100<iv(d0.x.igdef,l)),h=tkHit(m,skMul(id,l),{sk:1,ig,lab:d0.n});F.r.skd=(F.r.skd||0)+h.d;let ex="";
+  if(d0.x){const X=d0.x;if(X.stun&&Math.random()*100<iv(X.stun,l)){ex+=", Ohnmacht"+(F.it&&(F.it.k=="charge"||F.it.k=="smash")?" (Angriff unterbrochen!)":"");F.it={k:"stun"}}
+   if(X.poison&&Math.random()*100<iv(X.poison,l)){F.ps=4;ex+=", vergiftet"}if(X.burn&&Math.random()*100<iv(X.burn,l)){F.bu=3;ex+=", brennt"}if(X.slow&&Math.random()*100<iv(X.slow,l)){F.sl=2;ex+=", verlangsamt"}if(ig)ex+=", Verteidigung ignoriert"}
+  F.cdT[id]=tkCd(id)+1;txt=d0.n+" ("+skL(l)+"): "+h.d+" Schaden"+(h.c?" (kritisch!)":"")+ex}
+ else if(a=="pot"){const k=tkPot(arg);if(!k)return;const p=POT.find(x=>x.k==k),mx=p.t=="hp"?st.tp:st.mp,cur=p.t=="hp"?S.hp:S.mp;if(cur>=mx){toast(p.t=="hp"?"Deine TP sind schon voll":"Deine MP sind schon voll");return}
+  const h=Math.min(mx-cur,Math.round(mx*p.v/100*(1+f.potb/100)));if(p.t=="hp"){S.hp+=h;F.r.hl+=h}else S.mp+=h;S.pot[k]--;F.r.pot=(F.r.pot||0)+1;txt=p.n+": +"+h+(p.t=="hp"?" TP":" MP");F.fxq.push(["fz-p","+"+h+(p.t=="mp"?" MP":""),"hl"])}
+ else return;
+ F.r.rd++;flog(txt);F.busy=true;R();tkPlay();
+ if(F.mh<=0){setTimeout(()=>{if(F&&F.tk&&!F.end){F.busy=false;win()}},500);return}
+ setTimeout(tkEnemy,700)}
+// Zug des Gegners: führt die angekündigte Absicht aus, dann Gift, Abklingzeiten, Boss-Phasen und die nächste Absicht
+function tkEnemy(){if(!dgFight())return;const m=MO[F.i],st=stat(),f=fx(),r=F.r,it=F.it||{k:"atk"},T=TKI[it.k]||TKI.atk;F.fxq=[];
+ if(F.ps>0){F.ps--;const d=Math.max(1,Math.round(F.mx*.03));F.mh-=d;r.dd+=d;flog(m.n+" erleidet "+d+" Giftschaden")}
+ if(F.bu>0){F.bu--;const d=Math.max(1,Math.round(F.mx*.04));F.mh-=d;r.dd+=d;flog(m.n+" erleidet "+d+" Brandschaden")}
+ if(F.mh<=0){F.busy=false;return win()}
+ if(it.k=="stun")flog("💫 "+m.n+" ist benommen und setzt aus.");
+ else if(it.k=="guard")flog("🛡 "+m.n+" geht in Deckung.");
+ else if(it.k=="charge"){flog("⚡ "+m.n+" lädt einen Vernichtungsschlag auf!");F.fxq.push(["fz-m","lädt auf …","ms"])}
+ else if(it.k=="heal"){const h=Math.round(F.mx*.12);F.mh=Math.min(F.mx,F.mh+h);F.hc++;flog("✚ "+m.n+" regeneriert "+h+" TP.");F.fxq.push(["fz-m","+"+h,"hl"])}
+ else if(F.sl>0&&Math.random()<.5){F.sl--;flog(m.n+" ist verlangsamt und verpasst seinen Angriff.")}
+ else{let miss="";
+  if(F.inv>0){F.inv--;miss="Unbesiegbarkeit: Der Angriff prallt ab"}
+  else if(pskL("unbes")&&Math.random()*100<.5*pskL("unbes")){F.inv=1;miss="Unbesiegbarkeit! Dein Pet schützt dich vor den nächsten 2 Angriffen"}
+  else if(pskL("feder")&&Math.random()*100<1+.6*pskL("feder"))miss="Federleicht: Du weichst mühelos aus";
+  else if(it.k!="smash"&&Math.random()*100<Math.min(40,f.eva))miss=m.n+" verfehlt dich";
+  else if(it.k=="atk"&&Math.random()*100<Math.min(30,f.blk)){r.bl++;miss="Du blockst den Angriff"}
+  if(miss){flog(miss);F.fxq.push(["fz-p",/blockst/.test(miss)?"Block":/Unbesieg/.test(miss)?"Unbesiegbar":"verfehlt","ms"])}
+  else{let d=Math.max(1,Math.round(hit(mStat(m).a*(F.atkM||1)*T.m,st.d)*(1+f.vuln/100)*(1-Math.min(50,f.dmgred)/100)*(F.def?.4:1)));
+   if(f.mabs&&S.mp>0){const ab=Math.min(S.mp,Math.round(d*Math.min(50,f.mabs)/100));S.mp-=ab;d-=ab}
+   S.hp-=d;r.dt+=d;r.mh=Math.max(r.mh,d);F.fxq.push(["fz-p","-"+d,it.k=="smash"||it.k=="heavy"?"crit":"dp"]);
+   flog((it.k=="atk"?m.n+" trifft dich":T.ic+" "+T.n)+": "+d+" Schaden"+(F.def?" (verteidigt)":""));
+   if(it.k=="poison"&&!F.pd){F.pd={k:"gift",n:"Gift",p:3,r:3};flog("☠ Du bist vergiftet!")}
+   if(f.refl2&&S.hp>0){const rd=Math.max(1,Math.round(d*f.refl2/100));F.mh-=rd;r.dd+=rd;flog("Spiegel: "+rd+" Schaden zurück")}
+   const el=pskL("erneu");if(el&&S.hp>0&&S.hp<st.tp*.2&&Date.now()>(S.pcd||0)){const h=Math.min(st.tp-S.hp,Math.round(st.tp*(10+2*el)/100));S.hp+=h;r.hl+=h;S.pcd=Date.now()+60000;F.fxq.push(["fz-p","+"+h,"hl"]);flog("Erneuerung: Dein Pet stellt "+h+" TP wieder her")}}}
+ if(F.pd&&S.hp>0){const hl=pskL("heil");if(hl&&Math.random()*100<8*hl){flog("Heilung: Dein Pet entfernt "+F.pd.n+".");F.pd=null}
+  else{const d=Math.max(1,Math.round(st.tp*F.pd.p/100));S.hp-=d;r.dt+=d;flog(F.pd.n+": "+d+" Schaden");if(--F.pd.r<=0){flog(F.pd.n+" lässt nach.");F.pd=null}}}
+ for(const k in F.cdT)if(F.cdT[k]>0)F.cdT[k]--;if(F.mb>0)F.mb--;
+ if(isBoss(m)){if(!F.ph&&F.mh<=F.mx*.5){F.ph=1;F.atkM=1.25;flog("⚠ "+m.n+" gerät in Raserei (+25 % Angriff)")}else if(F.ph==1&&F.mh<=F.mx*.25){F.ph=2;F.atkM=1.5;flog("⚠ "+m.n+" kämpft mit letzter Kraft (+50 % Angriff)")}}
+ S.mp=Math.min(st.mp,S.mp+Math.ceil(st.mp*RL().mpF/100));F.def=false;F.busy=false;
+ if(F.mh<=0)return win();if(S.hp<=0)return lose();
+ F.it=tkRoll(m);save();R();tkPlay()}
+// Darstellung des taktischen Kampfes (im Kampffenster)
+function tkHtml(m){const st=stat(),it=F.it||{k:"atk"},T=TKI[it.k]||TKI.atk,g=S.dg,d=g?DG[g.id]:null,boss=isBoss(m),b=F.busy,sks=mySk().filter(id=>S.ks[id]>0&&SKL[id].t=="a"),nh=tkPotN("hp"),nm=tkPotN("mp");
+ const bar=(c,v,mx,t)=>`<div class="tkbar ${c}"><i style="width:${Math.max(0,Math.min(100,v/mx*100))}%"></i><span>${t||Math.max(0,Math.round(v))+" / "+mx}</span></div>`;
+ const chip=(c,t,ti)=>`<span class="tkch ${c}" title="${ti||t}">${t}</span>`;
+ const pS=[F.pd?chip("bad","☠ "+F.pd.n+" "+F.pd.r,F.pd.n+": noch "+F.pd.r+" Züge"):"",F.inv?chip("good","Unbesiegbar"):"",F.def?chip("good","🛡 Verteidigt"):""].join("");
+ const mS=[F.ps?chip("bad","☠ Gift "+F.ps):"",F.bu?chip("bad","🔥 Brand "+F.bu):"",F.sl?chip("bad","🐌 Langsam "+F.sl):"",F.mb?chip("bad","Abwehr gebrochen "+F.mb):"",F.ph?chip("warn",F.ph==1?"Raserei":"Letzte Kraft"):""].join("");
+ const act=(k,ic,n,sub,key,dis)=>`<button class="tkb" ${b||dis?"disabled":""} onclick="tkAct(${k})"><span class="tkbi">${ic}</span><b>${n}</b><small>${sub}</small><kbd>${key}</kbd></button>`;
+ return`<div class="tk${boss?" boss":""}">
+ <div class="tkh"><span>${d?d.n+" · Etage "+(g.f+1)+" von "+d.fl.length:""}</span><span>Zug ${F.r.rd+1}</span></div>
+ <div class="arena dga tka${boss?" dgboss":""}">
+  <div class="tkc" id="fz-p"><div class="tkpic">${emb(S.c,64)}</div><b>Du</b>${bar("hp",S.hp,st.tp)}${bar("mp",S.mp,st.mp)}
+   <div class="tkfo" title="Fokus: Angriff und Verteidigen geben je 1, der Fokus-Schlag kostet 3">${Array.from({length:5},(_,k)=>`<i class="${k<F.fo?"on":""}"></i>`).join("")}</div><div class="tkst">${pS}</div></div>
+  <div class="tkvs">VS</div>
+  <div class="tkc" id="fz-m"><div class="tkpic">${mFig(m,"#c0392b")}</div><b>${m.n}</b><span class="m" style="font-size:12px">Stufe ${m.L}${boss?" · Boss":RK[m.s]?" · "+RK[m.s]:""}</span>${bar("mh",F.mh,F.mx)}<div class="tkst">${mS}</div></div>
+ </div>
+ <div class="tki k-${it.k}"><span class="tkii">${T.ic}</span><div><div><span class="m">Nächster Zug des Gegners:</span> <b>${T.n}</b>${T.m?` <span class="tkd">ca. ${tkEst(m,it.k)} Schaden${F.def?"":", mit Verteidigen ca. "+Math.round(tkEst(m,it.k)*.4)}</span>`:""}</div><span class="m">${m.n} ${T.tx}</span></div></div>
+ <div class="tkl" aria-live="polite">${F.log.slice(0,4).map((x,j)=>`<div${j?' class="m"':""}>${x}</div>`).join("")}</div>
+ <div class="tkac">${act("'atk'","⚔","Angriff","+1 Fokus","1")}${act("'def'","🛡","Verteidigen","−60 % Schaden · +1 Fokus","2")}${act("'fo'","✴","Fokus-Schlag",F.fo+"/3 Fokus · ignoriert Abwehr","3",F.fo<3)}${act("'pot','hp'","❤","Heiltrank",nh+" übrig","4",!nh)}${act("'pot','mp'","💧","Manatrank",nm+" übrig","5",!nm)}</div>
+ ${sks.length?`<div class="tksk">${sks.slice(0,4).map((id,j)=>{const l=S.ks[id],mp=skMp(id,l),cd=F.cdT[id]||0,no=S.mp<mp||cd>0;return`<button class="tkb sk" ${b||no?"disabled":""} onclick="tkAct('sk',${id})" title="${SKL[id].tx}">${skIco(id,30)}<b>${SKL[id].n}</b><small>${cd?"noch "+cd+" Zug"+(cd>1?"e":""):mp+" MP"}${SKL[id].x&&SKL[id].x.stun?" · Ohnmacht":""}</small><kbd>${6+j}</kbd></button>`}).join("")}</div>`:`<div class="m" style="font-size:12px">Lerne Angriffsfertigkeiten, um sie hier einzusetzen.</div>`}
+ <div class="row" style="justify-content:space-between"><span class="m" style="font-size:12px">Tipp: Lies die Absicht des Gegners. Verteidige gegen schwere Schläge, unterbrich das Aufladen, heile, wenn er in Deckung geht.</span><button class="btn s" ${b?"disabled":""} onclick="flee()">Fliehen</button></div></div>`}
 // ============================================================
 // ---- Quests nach dem Wiki (Liste der Quests, Jagdaufträge, Die Forschung des Biologen) ----
 // lv = Stufe im Spiel (Wiki-Stufe ÷ 3, aufgerundet). Yang-Belohnungen aus dem Wiki sind durch 20 geteilt. EP-Belohnungen in Prozent der benötigten EP der aktuellen Stufe.
@@ -3220,7 +3300,7 @@ const SB_KEY="sb_publishable_q37pXZ7vqP4Nbb5x4app1w_7i8DOSRI";
 // APP_BUILD = Versionsnummer dieser Datei (JJJJMMTTnn). Bei jeder neuen Datei erhöhen!
 // Der Admin gibt eine Version in der Konfiguration mit „Diese Version für alle freigeben“ frei (game_config.data.minVer).
 // Ältere Dateien zeigen dann „Neue Version verfügbar“ und speichern nicht mehr in die Cloud; der Server lehnt sie zusätzlich ab (drachenpfad-version.sql).
-const APP_BUILD=2026111106;
+const APP_BUILD=2026111108;
 let verOld=false;
 const srvMin=()=>+(gcRow&&gcRow.data&&gcRow.data.minVer)||0;
 const verTxt=b=>{b=String(b);return b.length==10?b.slice(6,8)+"."+b.slice(4,6)+"."+b.slice(0,4)+" #"+(+b.slice(8)):b};
