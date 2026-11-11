@@ -417,8 +417,13 @@ button.imon:hover{border-color:var(--gold);box-shadow:0 0 8px rgba(232,184,90,.3
 .pnb.ishb .ishc{display:inline-flex;align-items:center;gap:3px;margin-left:4px;padding:0 6px;border-radius:8px;background:rgba(0,0,0,.35);color:#ffe2a0;font-size:12px}
 .ishg{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}.ishi{display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;padding:10px 8px;border:1px solid rgba(200,150,46,.45);border-radius:8px;background:linear-gradient(180deg,rgba(80,50,15,.4),rgba(20,10,4,.4))}
 .ishp{display:inline-flex;align-items:center;gap:4px;color:#ffd25a;font-weight:700}.ishcr{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:6px 0;border-bottom:1px solid rgba(200,150,46,.2)}
-.mapa path{stroke:transparent;stroke-width:3;transition:stroke .15s,fill-opacity .15s}.mapa:hover path,.mapa:focus-visible path{stroke:#ffd25a;fill:#fff;fill-opacity:.14}
-.mapa.here path{stroke:#ffd25a;stroke-dasharray:5 4;stroke-width:2.2}.mapa.sel path{stroke:#d8263c;stroke-width:3.5;stroke-dasharray:none}.mapa:focus{outline:none}
+.mapa path{stroke:none;fill-opacity:var(--fo,0);transition:fill-opacity .2s,filter .2s}.mapa:focus{outline:none}
+.mapa.here path{fill-opacity:calc(var(--fo,0) + .12)}
+.mapa:hover path,.mapa:focus-visible path{fill-opacity:calc(var(--fo,0) + .22);filter:drop-shadow(0 0 6px rgba(255,220,120,.85))}
+.mapa.sel path{fill-opacity:calc(var(--fo,0) + .3);filter:drop-shadow(0 0 8px rgba(255,220,120,.95))}
+.mapa.lk:hover path{fill:#c8c0b0}
+#mtip{position:fixed;z-index:70;display:none;width:250px;padding:10px 12px;border:1px solid #c8962e;border-radius:6px;background:linear-gradient(180deg,#2a1b10,#140c07);box-shadow:0 8px 24px rgba(0,0,0,.6);color:#f0e2c0;font-size:13px}
+#mtip>*+*{margin-top:6px}.mtl{display:flex;flex-direction:column;gap:2px;font-size:12.5px}
 .svl{display:grid;gap:4px}.svr{display:flex;align-items:center;gap:10px;padding:6px 10px;border:1px solid rgba(200,150,46,.25);border-radius:6px;background:rgba(0,0,0,.2)}
 .svr.no{border-color:rgba(255,120,90,.5);background:rgba(120,30,10,.2)}.svi{width:24px;height:24px;flex:none;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;font-weight:700}
 .svr.ok .svi{background:#2a5a2a;color:#bfffbf}.svr.no .svi{background:#6a1a10;color:#ffd0c0}.svf{font:12px monospace;color:#ffd0a0;background:rgba(0,0,0,.35);padding:2px 6px;border-radius:4px}
@@ -2323,14 +2328,27 @@ const mapOpt=()=>Object.assign({fl:false,rd:false},(CFG.ar||{})._map||{});
 // Eigene Karte: keine Schrift und keine Symbole, nur unsichtbare klickbare Gebietsflächen (beim Drüberfahren golden umrandet).
 // Name und Stufe stehen im Tooltip; der eigene Standort ist golden gestrichelt, das gewählte Gebiet rot umrandet.
 function mapHots(sel){const mo=mapOpt();return AR.map((a,i)=>{const lock=S.lvl<a.lv,c=TH[a.th].map;
- return`<g class="mapa${i==sel?" sel":""}${i==S.ar?" here":""}" tabindex="0" role="button" aria-label="${chEsc(a.n)}${lock?", ab Stufe "+a.lv:""}" style="cursor:pointer" onclick="pick(${i})" onkeydown="if(event.key=='Enter')pick(${i})"><title>${chEsc(a.n)} · ${lock?"ab Stufe "+a.lv:"Stufe "+a.lv+"+"}${i==S.ar?" · du bist hier":""}</title><path d="${regPath(a)}" fill="${mo.fl?c:"#fff"}" fill-opacity="${mo.fl?.3:0}" stroke-linejoin="round"/></g>`}).join("")}
+ return`<g class="mapa${i==sel?" sel":""}${i==S.ar?" here":""}${lock?" lk":""}" tabindex="0" role="button" aria-label="${chEsc(a.n)}${lock?", ab Stufe "+a.lv:""}" style="cursor:pointer" onclick="pick(${i})" onkeydown="if(event.key=='Enter')pick(${i})" onmouseenter="mapTipShow(this,${i})" onmouseleave="mapTipHide()" onfocus="mapTipShow(this,${i})" onblur="mapTipHide()"><path d="${regPath(a)}" fill="${mo.fl?c:"#ffe9a8"}" stroke-linejoin="round" style="--fo:${mo.fl?.3:0}"/></g>`}).join("")}
+// Tooltip über einem Gebiet der eigenen Karte: Infos und „Hierher reisen“. Bleibt offen, solange die Maus auf dem Gebiet oder dem Tooltip ist.
+let mapTipT=null;
+function mapTipHide(now){clearTimeout(mapTipT);mapTipT=setTimeout(()=>{const t=$("mtip");if(t)t.style.display="none"},now?0:250)}
+function mapTipShow(el,i){clearTimeout(mapTipT);let t=$("mtip");if(!t){t=document.createElement("div");t.id="mtip";t.onmouseenter=()=>clearTimeout(mapTipT);t.onmouseleave=()=>mapTipHide();document.body.appendChild(t)}
+ const a=AR[i],lock=S.lvl<a.lv,busy=F&&!F.end,here=i==S.ar,ms=MO.filter(m=>m.a==i),norm=ms.filter(m=>m.s<5&&!isBoss(m)),boss=ms.filter(isBoss),met=ms.filter(m=>m.s==5&&!isBoss(m)),dg=DG.filter(d=>d.at==i);
+ const types=[...new Set(norm.map(m=>m.e))].join(", ");
+ const why=here?"":lock?`Zugänglich ab Stufe ${a.lv}`:busy?"Während eines Kampfes kannst du nicht reisen":S.dg?"Verlasse zuerst den Dungeon":"";
+ t.innerHTML=`<div class="row" style="flex-wrap:nowrap;justify-content:space-between;gap:8px"><b style="font-size:15px">${chEsc(a.n)}</b>${here?'<span class="up" style="font-size:12px">du bist hier</span>':lock?'<span class="dn" style="font-size:12px">🔒 gesperrt</span>':""}</div>
+  <div class="m">Stufe ${a.lv}–${a.mx>98?"∞":a.mx}${a.xpM&&a.xpM!=1?` · <span class="up">+${Math.round((a.xpM-1)*100)} % EP</span>`:""}</div>
+  <div class="mtl"><span>⚔ ${norm.length} Monsterarten${types?` <span class="m">(${chEsc(types)})</span>`:""}</span>${boss.length?`<span>👑 Boss: ${boss.map(m=>chEsc(m.n)).join(", ")}</span>`:""}${met.length?`<span>◆ ${met.length} Metinstein${met.length>1?"e":""}</span>`:""}${dg.map(d=>`<span>⛩ Dungeon: ${chEsc(d.n)}</span>`).join("")}</div>
+  ${why?`<div class="${lock?"dn":"m"}" style="font-size:12px">${why}</div>`:""}
+  <div class="row" style="gap:6px"><button class="btn" ${!here&&why?"disabled":""} onclick="mapTipHide(1);travel(${i})">${here?"Zum Kampf":"⇢ Hierher reisen"}</button><button class="btn s" onclick="mapTipHide(1);pick(${i})">Details</button></div>`;
+ t.style.display="block";const r=el.getBoundingClientRect(),w=t.offsetWidth,h=t.offsetHeight;let x=r.right-8;if(x+w>innerWidth-8)x=Math.max(8,r.left-w+8);let y=r.top+r.height/2-h/2;y=Math.max(8,Math.min(y,innerHeight-h-8));t.style.left=x+"px";t.style.top=y+"px"}
 const mapBgAny=()=>{const u=mapImg();return u?`<defs><clipPath id="mclip2"><rect width="400" height="290" rx="6"/></clipPath></defs><g clip-path="url(#mclip2)"><rect width="400" height="290" fill="#2a1a0e"/><image href="${u}" width="400" height="290" preserveAspectRatio="xMidYMid slice"/></g><rect x="1.5" y="1.5" width="397" height="287" rx="6" fill="none" stroke="#5e4424" stroke-width="3"/>`:mapBg()};
 function mapHtml2(){const sel=wk==null?S.ar:wk,ord=AR.map((a,i)=>i).sort((x,y)=>AR[x].lv-AR[y].lv),own=!!mapImg(),mo=mapOpt();
  const road=ord.map(i=>AR[i].cx+","+AR[i].cy).join(" "),lab=own?' stroke="#f3e6c4" stroke-width="3" paint-order="stroke" stroke-linejoin="round"':"";
  return`<div class="card stack" style="margin-top:12px"><h2>Weltkarte</h2><svg viewBox="0 0 400 290" style="width:100%;max-height:420px" role="group" aria-label="Weltkarte">${mapBgAny()}
  ${!own||mo.rd?`<polyline points="${road}" fill="none" stroke="#5a3c1c" stroke-width="1.6" stroke-dasharray="2 4" opacity=".7"/>`:""}
  ${own?mapHots(sel):AR.map((a,i)=>{const lock=S.lvl<a.lv,c=TH[a.th].map,fo=own?(mo.fl?.3:0):.38,sw=i==sel?3.5:own&&!mo.fl?0:1.6;return`<g tabindex="0" role="button" aria-label="${a.n}" style="cursor:pointer;opacity:${lock?.55:1}" onclick="pick(${i})" onkeydown="if(event.key=='Enter')pick(${i})"><path d="${regPath(a)}" fill="${c}" fill-opacity="${fo}" stroke="${i==sel?"#a3221a":"#5e4424"}" stroke-width="${sw}" stroke-linejoin="round"/>${MO.some(m=>m.a==i&&m.s>=5)?`<path d="M${a.cx+30} ${a.cy-26}l5 7-5 7-5-7z" fill="#a3221a" stroke="#2a170a"/>`:""}${DG.some(d=>d.at==i)?`<g transform="translate(${a.cx-40} ${a.cy-30})"><circle r="7" fill="#2a170a"/><path d="M-4 3V0a4 4 0 018 0v3M-2 -1h1M1 -1h1" stroke="#e9d6a8" stroke-width="1.4" fill="none"/></g>`:""}${i==S.ar?`<g transform="translate(${a.cx-8} ${a.cy-36})"><path d="M0 0v18" stroke="#2a170a" stroke-width="2"/><path d="M1 1h12l-3 4 3 4H1z" fill="#a3221a" stroke="#2a170a"/></g>`:""}<text x="${a.cx}" y="${a.cy+2}" text-anchor="middle" fill="#2a170a" font-size="11.5" font-family="Cinzel,Georgia,serif" font-weight="700"${lab}>${a.n.length>14?a.n.split(" ").slice(0,-1).join(" "):a.n}</text>${a.n.length>14?`<text x="${a.cx}" y="${a.cy+14}" text-anchor="middle" fill="#2a170a" font-size="11.5" font-family="Cinzel,Georgia,serif" font-weight="700"${lab}>${a.n.split(" ").slice(-1)}</text>`:""}<text x="${a.cx}" y="${a.cy+(a.n.length>14?27:16)}" text-anchor="middle" fill="#5a3c1c" font-size="10"${lab}>${lock?"ab Stufe "+a.lv:"Stufe "+a.lv+"+"}</text></g>`}).join("")}</svg>
- <div class="m">Dein Standort: <b>${AR[S.ar].n}</b>${own?" (golden gestrichelt) · Fahre mit der Maus über die Karte, um die Gebiete zu sehen, und klicke eines an, um Details zu sehen":" · Klicke ein Gebiet an, um Details zu sehen · ◆ = Metinsteine und Bosse · Torbogen = Dungeon-Eingang · gestrichelt = empfohlene Reihenfolge"}</div></div>`}
+ <div class="m">Dein Standort: <b>${AR[S.ar].n}</b>${own?" (leicht hervorgehoben) · Fahre mit der Maus über ein Gebiet für Infos und um direkt dorthin zu reisen":" · Klicke ein Gebiet an, um Details zu sehen · ◆ = Metinsteine und Bosse · Torbogen = Dungeon-Eingang · gestrichelt = empfohlene Reihenfolge"}</div></div>`}
 // ---- Alchemie: Logik ----
 const SPC=[0,.2,.25,.35,.5,.8,1];
 function alInit(){const d={d:0,decks:[[0,0,0,0,0,0].map(()=>null),[0,0,0,0,0,0].map(()=>null)],on:false,t:0,box:[],spl:0,cor:0,day:"",dn:0,zg:0,zp:0,zt:0,el:[]};S.al=S.al||{};for(const k in d)if(S.al[k]==null)S.al[k]=d[k]}
@@ -3202,7 +3220,7 @@ const SB_KEY="sb_publishable_q37pXZ7vqP4Nbb5x4app1w_7i8DOSRI";
 // APP_BUILD = Versionsnummer dieser Datei (JJJJMMTTnn). Bei jeder neuen Datei erhöhen!
 // Der Admin gibt eine Version in der Konfiguration mit „Diese Version für alle freigeben“ frei (game_config.data.minVer).
 // Ältere Dateien zeigen dann „Neue Version verfügbar“ und speichern nicht mehr in die Cloud; der Server lehnt sie zusätzlich ab (drachenpfad-version.sql).
-const APP_BUILD=2026111105;
+const APP_BUILD=2026111106;
 let verOld=false;
 const srvMin=()=>+(gcRow&&gcRow.data&&gcRow.data.minVer)||0;
 const verTxt=b=>{b=String(b);return b.length==10?b.slice(6,8)+"."+b.slice(4,6)+"."+b.slice(0,4)+" #"+(+b.slice(8)):b};
