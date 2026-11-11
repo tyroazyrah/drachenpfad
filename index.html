@@ -2874,11 +2874,24 @@ function gcDecide(){if(!gcRow||!gcAuth)return;const adm=gcAdm();
 // Hinweisleiste, wenn während des Spiels eine neue Version veröffentlicht wurde
 function gcBar(){let e=$("gcb");if(!gcNew){if(e)e.remove();return}if(!e){e=document.createElement("div");e.id="gcb";document.body.appendChild(e)}
  e.innerHTML=`<span>Neue Spieldaten verfügbar (Version ${gcNew.version}).</span><button class="btn s" onclick="gcApply(gcNew)">Jetzt übernehmen</button>`}
+// Eigene Bilder (data:-Links in CFG.ic) vor dem Veröffentlichen in den Bucket "konfig" hochladen und durch Links ersetzen.
+// Dateiname = Prüfsumme des Bildes, dasselbe Bild wird also nie doppelt gespeichert. Danach ist die Konfiguration nur noch wenige KB groß.
+async function gcIcUp(){const ic=CFG.ic||{},ks=Object.keys(ic).filter(k=>/^data:/.test(ic[k]||""));if(!ks.length)return;let n=0;
+ for(const k of ks){n++;if(n==1||n%10==0||n==ks.length){gcMsg="Lade Bilder in den Speicher hoch … "+n+" / "+ks.length;R()}
+  const src=ic[k],blob=await (await fetch(src)).blob(),ext=(blob.type.split("/")[1]||"png").replace("svg+xml","svg").replace("jpeg","jpg");
+  let h;if(window.crypto&&crypto.subtle){const hb=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(src));h=[...new Uint8Array(hb)].slice(0,12).map(b=>b.toString(16).padStart(2,"0")).join("")}
+  else{let a=0x811c9dc5,b=0x01000193;for(let i=0;i<src.length;i++){a=Math.imul(a^src.charCodeAt(i),16777619);b=Math.imul(b^src.charCodeAt(i),2246822519)}h=(a>>>0).toString(16)+(b>>>0).toString(16)+src.length.toString(16)}
+  const path="ic/"+h+"."+ext,up=await sb.storage.from("konfig").upload(path,blob,{upsert:true,contentType:blob.type,cacheControl:"31536000"});
+  if(up.error)throw up.error;
+  if(CFG.ic[k]===src)CFG.ic[k]=SB_URL.replace(/\/+$/,"")+"/storage/v1/object/public/konfig/"+path}
+ try{localStorage.setItem("drachenpfad_cfg",JSON.stringify(CFG))}catch(e){}}
 // rel = 1: zusätzlich diese Spielversion (APP_BUILD) für alle freigeben, ältere Dateien werden gesperrt
 async function gcPublish(rel){if(!sb||!sbUser||!isAdm()||gcBusy||verOld)return;gcBusy=true;gcMsg="";R();
+ try{await gcIcUp()}catch(e){gcBusy=false;const m=(e&&(e.message||e.error))||String(e);
+  gcMsg=/bucket not found|not found/i.test(m)?"Bilder-Speicher fehlt: drachenpfad-konfig-bilder.sql im SQL Editor ausführen, dann erneut veröffentlichen.":/row-level security|policy|unauthorized|403/i.test(m)?"Bilder hochladen nicht erlaubt: Bist du als Admin angemeldet und ist drachenpfad-konfig-bilder.sql ausgeführt?":"Bilder hochladen fehlgeschlagen: "+sbErr(e);R();return}
  const mv=rel?Math.max(APP_BUILD,srvMin()):srvMin(),pub=Object.assign({},CFG,{minVer:mv||undefined});
  const{data,error}=await sb.from("game_config").upsert({id:1,data:pub}).select("data,version,updated_at,updated_by").single();gcBusy=false;
- if(error){gcMsg=/row-level security|permission|42501/i.test(error.message+" "+error.code)?"Keine Berechtigung: Nur Admins dürfen veröffentlichen (is_admin in profiles).":/PGRST205|could not find the table|does not exist/i.test(error.message+" "+error.code)?"Die Tabelle fehlt: drachenpfad-konfiguration.sql im SQL Editor ausführen.":"Veröffentlichen fehlgeschlagen: "+sbErr(error);R();return}
+ if(error){gcMsg=/row-level security|permission|42501/i.test(error.message+" "+error.code)?"Keine Berechtigung: Nur Admins dürfen veröffentlichen (is_admin in profiles).":/PGRST205|could not find the table|does not exist/i.test(error.message+" "+error.code)?"Die Tabelle fehlt: drachenpfad-konfiguration.sql im SQL Editor ausführen.":/timeout/i.test(error.message||"")?"Zeitüberschreitung: Die Konfiguration ist zu groß ("+(JSON.stringify(pub).length/1e6).toFixed(1).replace(".",",")+" MB). Meist liegt das an Bildern, die noch nicht in den Speicher hochgeladen wurden.":"Veröffentlichen fehlgeschlagen: "+sbErr(error);R();return}
  gcSrv=data;gcRow=Object.assign({},gcRow||{},data);CFG.minVer=mv||undefined;gcLS("drachenpfad_cfg_ver",String(data.version));gcLS("drachenpfad_cfg_dirty",null);
  gcMsg=rel?"Spielversion "+verTxt(APP_BUILD)+" freigegeben (Daten-Version "+data.version+"). Spieler mit älteren Dateien müssen jetzt neu laden.":"Veröffentlicht als Version "+data.version+". Alle Spieler bekommen sie beim nächsten Laden, laufende Spiele sehen einen Hinweis.";R()}
 let gcArm=false;
@@ -3159,7 +3172,7 @@ const SB_KEY="sb_publishable_q37pXZ7vqP4Nbb5x4app1w_7i8DOSRI";
 // APP_BUILD = Versionsnummer dieser Datei (JJJJMMTTnn). Bei jeder neuen Datei erhöhen!
 // Der Admin gibt eine Version in der Konfiguration mit „Diese Version für alle freigeben“ frei (game_config.data.minVer).
 // Ältere Dateien zeigen dann „Neue Version verfügbar“ und speichern nicht mehr in die Cloud; der Server lehnt sie zusätzlich ab (drachenpfad-version.sql).
-const APP_BUILD=2026111102;
+const APP_BUILD=2026111103;
 let verOld=false;
 const srvMin=()=>+(gcRow&&gcRow.data&&gcRow.data.minVer)||0;
 const verTxt=b=>{b=String(b);return b.length==10?b.slice(6,8)+"."+b.slice(4,6)+"."+b.slice(0,4)+" #"+(+b.slice(8)):b};
@@ -3491,6 +3504,7 @@ const SVS=[["grundlage","Konten & Cloud-Spielstand","drachenpfad-supabase.sql","
  ["klassen","Rangliste nach Klassen","drachenpfad-rangliste-klassen.sql","Klassenfilter in der Rangliste"],
  ["chat","Chat & Admin-Rechte","drachenpfad-chat.sql","Chat, Flüstern, [SA]-Markierung, Admin-Rechte"],
  ["konfig","Konfiguration für alle","drachenpfad-konfiguration.sql","„Für alle veröffentlichen“, Patchnotes"],
+ ["konfigbilder","Bilder-Speicher der Konfiguration","drachenpfad-konfig-bilder.sql","Eigene Icons und Hintergründe beim Veröffentlichen"],
  ["events","Eventkalender","drachenpfad-events.sql","Events wie doppelte Drops"],
  ["gilden","Gilden","drachenpfad-gilden.sql","Gilden gründen, beitreten, Gilden-Rangliste"],
  ["spenden","Gilden-Spenden ohne Tageslimit","drachenpfad-gilden-spenden.sql","EP beliebig oft spenden"],
