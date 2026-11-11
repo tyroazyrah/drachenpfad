@@ -417,6 +417,9 @@ button.imon:hover{border-color:var(--gold);box-shadow:0 0 8px rgba(232,184,90,.3
 .pnb.ishb .ishc{display:inline-flex;align-items:center;gap:3px;margin-left:4px;padding:0 6px;border-radius:8px;background:rgba(0,0,0,.35);color:#ffe2a0;font-size:12px}
 .ishg{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}.ishi{display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;padding:10px 8px;border:1px solid rgba(200,150,46,.45);border-radius:8px;background:linear-gradient(180deg,rgba(80,50,15,.4),rgba(20,10,4,.4))}
 .ishp{display:inline-flex;align-items:center;gap:4px;color:#ffd25a;font-weight:700}.ishcr{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:6px 0;border-bottom:1px solid rgba(200,150,46,.2)}
+.svl{display:grid;gap:4px}.svr{display:flex;align-items:center;gap:10px;padding:6px 10px;border:1px solid rgba(200,150,46,.25);border-radius:6px;background:rgba(0,0,0,.2)}
+.svr.no{border-color:rgba(255,120,90,.5);background:rgba(120,30,10,.2)}.svi{width:24px;height:24px;flex:none;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;font-weight:700}
+.svr.ok .svi{background:#2a5a2a;color:#bfffbf}.svr.no .svi{background:#6a1a10;color:#ffd0c0}.svf{font:12px monospace;color:#ffd0a0;background:rgba(0,0,0,.35);padding:2px 6px;border-radius:4px}
 .petpic{position:relative;flex:none;line-height:0;cursor:help;border-radius:8px}.petpic:hover,.petpic:focus-visible{outline:1px solid #ffd25a;outline-offset:2px}
 .petpic .pskn{position:absolute;right:-4px;bottom:-4px;padding:1px 5px;border-radius:8px;background:#2a1a0e;border:1px solid #c8962e;color:#ffe2a0;font-size:11px;line-height:14px}
 .petd{border-top:1px solid rgba(200,150,46,.25);padding-top:4px}.petd>summary{cursor:pointer;font-size:13px;color:var(--gold,#e8b85a);padding:2px 0;list-style-position:inside}
@@ -3035,7 +3038,7 @@ function cfgHtml(){const nm=Object.keys(CFG.m).length,nq=Object.keys(CFG.q).leng
  const head=`<div class="card stack" style="margin-top:12px"><div class="top"><h2 style="margin:0">Konfiguration</h2><span class="m">${nm} Monster, ${nq} Quests, ${Object.keys(CFG.ar||{}).length+Object.keys(CFG.dg||{}).length} Gebiete/Dungeons und ${Object.keys(CFG.ic||{}).length} Icons angepasst</span></div>
   <div class="m">Hier stellst du Stufe, Drops und Bild jedes Monsters (das Bild erscheint im Kampf und im Infofenster), die Belohnungen jeder Quest, die Stufen der Gebiete, die Regeln der Dungeons und eigene Icons ein. Leere Felder nutzen den Standardwert (grau). Änderungen wirken sofort und werden im Browser gespeichert. Mit Export und Import kannst du sie als Datei sichern oder weitergeben.</div>
   ${gcHtml()}${cfgMsg?`<div class="up">${cfgMsg}</div>`:""}
-  <div class="row"><button class="btn${cfgTab=="m"?"":" s"}" onclick="cfgTab='m';R()">Monster</button><button class="btn${cfgTab=="q"?"":" s"}" onclick="cfgTab='q';R()">Quests</button><button class="btn${cfgTab=="g"?"":" s"}" onclick="cfgTab='g';R()">Gebiete &amp; Dungeons</button><button class="btn${cfgTab=="r"?"":" s"}" onclick="cfgTab='r';R()">Spielregeln</button><button class="btn${cfgTab=="i"?"":" s"}" onclick="cfgTab='i';R()">Icons</button><button class="btn${cfgTab=="n"?"":" s"}" onclick="cfgTab='n';R()">Namen</button><button class="btn${cfgTab=="t"?"":" s"}" onclick="cfgTab='t';R()">Truhen</button><button class="btn${cfgTab=="s"?"":" s"}" onclick="cfgTab='s';R()">Itemshop</button>
+  <div class="row"><button class="btn${cfgTab=="m"?"":" s"}" onclick="cfgTab='m';R()">Monster</button><button class="btn${cfgTab=="q"?"":" s"}" onclick="cfgTab='q';R()">Quests</button><button class="btn${cfgTab=="g"?"":" s"}" onclick="cfgTab='g';R()">Gebiete &amp; Dungeons</button><button class="btn${cfgTab=="r"?"":" s"}" onclick="cfgTab='r';R()">Spielregeln</button><button class="btn${cfgTab=="i"?"":" s"}" onclick="cfgTab='i';R()">Icons</button><button class="btn${cfgTab=="n"?"":" s"}" onclick="cfgTab='n';R()">Namen</button><button class="btn${cfgTab=="t"?"":" s"}" onclick="cfgTab='t';R()">Truhen</button><button class="btn${cfgTab=="s"?"":" s"}" onclick="cfgTab='s';R()">Itemshop</button><button class="btn${cfgTab=="sv"?"":" s"}" onclick="cfgTab='sv';R()">Server</button>
    <span style="flex:1"></span><button class="btn s" onclick="conToggle(1)" title="Taste F2">Konsole (F2)</button><button class="btn s" onclick="cfgExport()">Exportieren</button><label class="btn s" style="cursor:pointer">Importieren<input type="file" accept=".json,application/json" style="display:none" onchange="cfgImport(this.files[0])"></label><button class="btn s" onclick="cfgReset()">${cfgArmed?"Wirklich alles zurücksetzen?":"Alles zurücksetzen"}</button></div></div>`;
  let body;
  if(cfgTab=="i")body=icHtml();
@@ -3044,6 +3047,7 @@ function cfgHtml(){const nm=Object.keys(CFG.m).length,nq=Object.keys(CFG.q).leng
  else if(cfgTab=="n")body=cfgNames();
  else if(cfgTab=="t")body=cfgChests();
  else if(cfgTab=="s")body=cfgShop();
+ else if(cfgTab=="sv"){if(!svSt&&!svErr&&!svBusy&&sb&&sbUser)setTimeout(svCheck,0);body=cfgServer()}
  else if(cfgTab=="m"){const opts=AR.map((a,i)=>[a,i]).sort((x,y)=>x[0].lv-y[0].lv).map(([a,i])=>[`a${i}`,a.n]).concat(DG.map((d,i)=>[`d${i}`,"Dungeon: "+d.n]));
   const list=MO.map((m,i)=>[m,i]).filter(([m])=>(m.dg!=null?"d"+m.dg:"a"+m.a)==cfgArea&&(!cfgSearch||m.n.toLowerCase().includes(cfgSearch.toLowerCase())));
   body=`<div class="card stack" style="margin-top:12px"><div class="row"><label class="cf"><span>Gebiet</span><select onchange="cfgArea=this.value;cfgOpen=null;R()">${opts.map(([v,n])=>`<option value="${v}" ${v==cfgArea?"selected":""}>${n}${Object.keys(CFG.m).some(k=>k.startsWith(v+":"))?" ●":""}</option>`).join("")}</select></label>
@@ -3155,7 +3159,7 @@ const SB_KEY="sb_publishable_q37pXZ7vqP4Nbb5x4app1w_7i8DOSRI";
 // APP_BUILD = Versionsnummer dieser Datei (JJJJMMTTnn). Bei jeder neuen Datei erhöhen!
 // Der Admin gibt eine Version in der Konfiguration mit „Diese Version für alle freigeben“ frei (game_config.data.minVer).
 // Ältere Dateien zeigen dann „Neue Version verfügbar“ und speichern nicht mehr in die Cloud; der Server lehnt sie zusätzlich ab (drachenpfad-version.sql).
-const APP_BUILD=2026111101;
+const APP_BUILD=2026111102;
 let verOld=false;
 const srvMin=()=>+(gcRow&&gcRow.data&&gcRow.data.minVer)||0;
 const verTxt=b=>{b=String(b);return b.length==10?b.slice(6,8)+"."+b.slice(4,6)+"."+b.slice(0,4)+" #"+(+b.slice(8)):b};
@@ -3479,6 +3483,39 @@ function cfgShop(){const l=Array.isArray(CFG.shop)?CFG.shop:ISH0,pk=ishPk(),opts
   <div class="row"><button class="btn" onclick="ishCfgSet(l=>l.push({k:'gss',n:1,p:30}))">+ Eintrag hinzufügen</button>${Array.isArray(CFG.shop)?`<button class="btn s" onclick="delete CFG.shop;saveCfg()">Standard wiederherstellen</button>`:`<span class="m">Standardinhalt aktiv</span>`}</div></div>
  <div class="card stack" style="margin-top:12px"><h2>Coin-Pakete</h2><div class="m">Nur zur Anzeige unter „Coins aufladen“. Es wird nichts bezahlt.</div>${prow}
   <div class="row"><button class="btn s" onclick="ishCfgPk(l=>l.push({c:100,e:'0,99 €'}))">+ Paket hinzufügen</button>${Array.isArray(CFG.shopP)?`<button class="btn s" onclick="delete CFG.shopP;saveCfg()">Standard wiederherstellen</button>`:""}</div></div>`}
+// ---- Konfiguration → Server: welche Supabase-Teile eingerichtet sind (Funktion dp_status aus drachenpfad-status.sql) ----
+// [Schlüssel, Bezeichnung, SQL-Datei, wofür]
+const SVS=[["grundlage","Konten & Cloud-Spielstand","drachenpfad-supabase.sql","Anmelden, Spielstand in der Cloud"],
+ ["rangliste","Rangliste","drachenpfad-rangliste.sql","Rangliste nach Stufe"],
+ ["kampfkraft","Rangliste nach Kampfkraft","drachenpfad-rangliste-kampfkraft.sql","Sortierung nach Kampfkraft"],
+ ["klassen","Rangliste nach Klassen","drachenpfad-rangliste-klassen.sql","Klassenfilter in der Rangliste"],
+ ["chat","Chat & Admin-Rechte","drachenpfad-chat.sql","Chat, Flüstern, [SA]-Markierung, Admin-Rechte"],
+ ["konfig","Konfiguration für alle","drachenpfad-konfiguration.sql","„Für alle veröffentlichen“, Patchnotes"],
+ ["events","Eventkalender","drachenpfad-events.sql","Events wie doppelte Drops"],
+ ["gilden","Gilden","drachenpfad-gilden.sql","Gilden gründen, beitreten, Gilden-Rangliste"],
+ ["spenden","Gilden-Spenden ohne Tageslimit","drachenpfad-gilden-spenden.sql","EP beliebig oft spenden"],
+ ["profilbild","Profilbilder","drachenpfad-profilbild.sql","Eigene Profilbilder"],
+ ["gildenbild","Gildenbilder","drachenpfad-gildenbild.sql","Eigenes Bild für die Gilde"],
+ ["stufe","Stufe ändern (Admin)","drachenpfad-admin-stufe.sql","Konsolenbefehl /level"],
+ ["version","Versionsschutz","drachenpfad-version.sql","Alte Spieldateien dürfen nicht mehr speichern"]];
+let svSt=null,svBusy=false,svErr="";
+async function svCheck(){if(!sb||svBusy)return;svBusy=true;svErr="";R();
+ const r=await sb.rpc("dp_status");svBusy=false;
+ if(r.error){svSt=null;svErr=/PGRST202|could not find the function/i.test((r.error.message||"")+" "+r.error.code)?"fehlt":/KEIN_ADMIN/.test(r.error.message||"")?"Nur Admins (is_admin in profiles) dürfen den Server-Status abfragen. Bist du angemeldet?":sbErr(r.error)}
+ else{svSt=r.data||{};svSt._t=Date.now()}R()}
+function cfgServer(){
+ const head=`<div class="card stack" style="margin-top:12px"><div class="top"><h2 style="margin:0">Server-Status</h2><button class="btn s" ${svBusy||!sb?"disabled":""} onclick="svCheck()">${svBusy?"Prüfe …":svSt?"Erneut prüfen":"Jetzt prüfen"}</button></div>
+  <div class="m">Zeigt, welche Teile in Supabase eingerichtet sind. Fehlt etwas, führe die genannte SQL-Datei im Supabase-Dashboard unter „SQL Editor“ aus (einfügen, „Run“). Alle Dateien kann man gefahrlos mehrmals ausführen.</div>
+  <div class="m">Spieldatei: <b>${verTxt(APP_BUILD)}</b> · freigegeben: <b>${srvMin()?verTxt(srvMin()):"noch keine"}</b>${location.protocol=="file:"?" · <span class=\"dn\">du spielst eine Datei von deinem PC</span>":" · "+chEsc(location.host)}</div>`;
+ if(!SB_URL||!SB_KEY)return head+`<div class="m">Ohne Supabase gibt es nichts zu prüfen.</div></div>`;
+ if(!sbUser)return head+`<div class="m">Melde dich mit deinem Admin-Konto an, um den Status zu prüfen. ${sbBtn()}</div></div>`;
+ if(svErr=="fehlt")return head+`<div class="r3">Die Prüffunktion fehlt noch: <b>drachenpfad-status.sql</b> einmal im SQL Editor ausführen, dann „Jetzt prüfen“ klicken.</div></div>`;
+ if(svErr)return head+`<div class="dn">${svErr}</div></div>`;
+ if(!svSt)return head+`<div class="m">Klicke auf „Jetzt prüfen“.</div></div>`;
+ const miss=SVS.filter(([k])=>!svSt[k]);
+ return head+`<div class="${miss.length?"r3":"up"}">${miss.length?miss.length+" von "+SVS.length+" Teilen fehlen noch.":"Alles eingerichtet ✓"}</div>
+  <div class="svl">${SVS.map(([k,n,f,t])=>`<div class="svr${svSt[k]?" ok":" no"}"><span class="svi">${svSt[k]?"✓":"✗"}</span><span style="flex:1;min-width:0"><b>${n}</b><br><span class="m">${t}</span></span>${svSt[k]?`<span class="m">eingerichtet</span>`:`<span class="svf">${f}</span>`}</div>`).join("")}</div>
+  <div class="m">Geprüft um ${new Date(svSt._t).toLocaleTimeString("de-DE",{hour:"2-digit",minute:"2-digit"})} Uhr. Reihenfolge beim Nachholen: von oben nach unten.</div></div>`}
 function cfgBtnDraw(){ishBtnDraw();let w=$("cfw");const on=!!S&&isAdm();document.body.classList.toggle("adm",on);if(!on){if(w)w.innerHTML="";return}
  if(!w){w=document.createElement("div");w.id="cfw";document.body.appendChild(w)}const top=SB_URL&&SB_KEY?118:82,act=pg=="konfig";
  w.innerHTML=`<button class="pnb cfb${act?" on":""}" style="top:${top}px" onclick="location.hash=${act?"'start'":"'konfig'"}" title="Konfiguration (nur Admins)" aria-label="Konfiguration${act?" schließen":" öffnen"}">${itm("cfgw",22)}<span>Konfiguration</span>${typeof gcDirty=="function"&&SB_URL&&gcDirty()?`<b class="cfn" title="Unveröffentlichte Änderungen">●</b>`:""}</button>`}
