@@ -2315,11 +2315,15 @@ function mapBg(){if(MAPBG)return MAPBG;let dec="";
    <text y="-19" text-anchor="middle" font-size="7" font-family="Cinzel,Georgia,serif" font-weight="700" fill="#2a170a">N</text></g></g>
  <rect x="1.5" y="1.5" width="397" height="287" rx="6" fill="none" stroke="#5e4424" stroke-width="3"/><rect x="5" y="5" width="390" height="280" rx="4" fill="none" stroke="#5e4424" stroke-width=".7" opacity=".7"/>`;
  return MAPBG}
-function mapHtml2(){const sel=wk==null?S.ar:wk,ord=AR.map((a,i)=>i).sort((x,y)=>AR[x].lv-AR[y].lv);
- const road=ord.map(i=>AR[i].cx+","+AR[i].cy).join(" ");
- return`<div class="card stack" style="margin-top:12px"><h2>Weltkarte</h2><svg viewBox="0 0 400 290" style="width:100%;max-height:420px" role="group" aria-label="Weltkarte">${mapBg()}
- <polyline points="${road}" fill="none" stroke="#5a3c1c" stroke-width="1.6" stroke-dasharray="2 4" opacity=".7"/>
- ${AR.map((a,i)=>{const lock=S.lvl<a.lv,c=TH[a.th].map;return`<g tabindex="0" role="button" aria-label="${a.n}" style="cursor:pointer;opacity:${lock?.55:1}" onclick="pick(${i})" onkeydown="if(event.key=='Enter')pick(${i})"><path d="${regPath(a)}" fill="${c}" fill-opacity=".38" stroke="${i==sel?"#a3221a":"#5e4424"}" stroke-width="${i==sel?3.5:1.6}" stroke-linejoin="round"/>${MO.some(m=>m.a==i&&m.s>=5)?`<path d="M${a.cx+30} ${a.cy-26}l5 7-5 7-5-7z" fill="#a3221a" stroke="#2a170a"/>`:""}${DG.some(d=>d.at==i)?`<g transform="translate(${a.cx-40} ${a.cy-30})"><circle r="7" fill="#2a170a"/><path d="M-4 3V0a4 4 0 018 0v3M-2 -1h1M1 -1h1" stroke="#e9d6a8" stroke-width="1.4" fill="none"/></g>`:""}${i==S.ar?`<g transform="translate(${a.cx-8} ${a.cy-36})"><path d="M0 0v18" stroke="#2a170a" stroke-width="2"/><path d="M1 1h12l-3 4 3 4H1z" fill="#a3221a" stroke="#2a170a"/></g>`:""}<text x="${a.cx}" y="${a.cy+2}" text-anchor="middle" fill="#2a170a" font-size="11.5" font-family="Cinzel,Georgia,serif" font-weight="700">${a.n.length>14?a.n.split(" ").slice(0,-1).join(" "):a.n}</text>${a.n.length>14?`<text x="${a.cx}" y="${a.cy+14}" text-anchor="middle" fill="#2a170a" font-size="11.5" font-family="Cinzel,Georgia,serif" font-weight="700">${a.n.split(" ").slice(-1)}</text>`:""}<text x="${a.cx}" y="${a.cy+(a.n.length>14?27:16)}" text-anchor="middle" fill="#5a3c1c" font-size="10">${lock?"ab Stufe "+a.lv:"Stufe "+a.lv+"+"}</text></g>`}).join("")}</svg>
+// Eigene Weltkarte (Konfiguration → Gebiete → Weltkarte, Bild-Schlüssel "map:welt"). mapOpt: fl = Gebietsflächen zeigen, rd = Weg zeigen
+const mapImg=()=>icU("map:welt");
+const mapOpt=()=>Object.assign({fl:false,rd:true},(CFG.ar||{})._map||{});
+const mapBgAny=()=>{const u=mapImg();return u?`<defs><clipPath id="mclip2"><rect width="400" height="290" rx="6"/></clipPath></defs><g clip-path="url(#mclip2)"><rect width="400" height="290" fill="#2a1a0e"/><image href="${u}" width="400" height="290" preserveAspectRatio="xMidYMid slice"/></g><rect x="1.5" y="1.5" width="397" height="287" rx="6" fill="none" stroke="#5e4424" stroke-width="3"/>`:mapBg()};
+function mapHtml2(){const sel=wk==null?S.ar:wk,ord=AR.map((a,i)=>i).sort((x,y)=>AR[x].lv-AR[y].lv),own=!!mapImg(),mo=mapOpt();
+ const road=ord.map(i=>AR[i].cx+","+AR[i].cy).join(" "),lab=own?' stroke="#f3e6c4" stroke-width="3" paint-order="stroke" stroke-linejoin="round"':"";
+ return`<div class="card stack" style="margin-top:12px"><h2>Weltkarte</h2><svg viewBox="0 0 400 290" style="width:100%;max-height:420px" role="group" aria-label="Weltkarte">${mapBgAny()}
+ ${!own||mo.rd?`<polyline points="${road}" fill="none" stroke="#5a3c1c" stroke-width="1.6" stroke-dasharray="2 4" opacity=".7"/>`:""}
+ ${AR.map((a,i)=>{const lock=S.lvl<a.lv,c=TH[a.th].map,fo=own?(mo.fl?.3:0):.38,sw=i==sel?3.5:own&&!mo.fl?0:1.6;return`<g tabindex="0" role="button" aria-label="${a.n}" style="cursor:pointer;opacity:${lock?.55:1}" onclick="pick(${i})" onkeydown="if(event.key=='Enter')pick(${i})"><path d="${regPath(a)}" fill="${c}" fill-opacity="${fo}" stroke="${i==sel?"#a3221a":"#5e4424"}" stroke-width="${sw}" stroke-linejoin="round"/>${MO.some(m=>m.a==i&&m.s>=5)?`<path d="M${a.cx+30} ${a.cy-26}l5 7-5 7-5-7z" fill="#a3221a" stroke="#2a170a"/>`:""}${DG.some(d=>d.at==i)?`<g transform="translate(${a.cx-40} ${a.cy-30})"><circle r="7" fill="#2a170a"/><path d="M-4 3V0a4 4 0 018 0v3M-2 -1h1M1 -1h1" stroke="#e9d6a8" stroke-width="1.4" fill="none"/></g>`:""}${i==S.ar?`<g transform="translate(${a.cx-8} ${a.cy-36})"><path d="M0 0v18" stroke="#2a170a" stroke-width="2"/><path d="M1 1h12l-3 4 3 4H1z" fill="#a3221a" stroke="#2a170a"/></g>`:""}<text x="${a.cx}" y="${a.cy+2}" text-anchor="middle" fill="#2a170a" font-size="11.5" font-family="Cinzel,Georgia,serif" font-weight="700"${lab}>${a.n.length>14?a.n.split(" ").slice(0,-1).join(" "):a.n}</text>${a.n.length>14?`<text x="${a.cx}" y="${a.cy+14}" text-anchor="middle" fill="#2a170a" font-size="11.5" font-family="Cinzel,Georgia,serif" font-weight="700"${lab}>${a.n.split(" ").slice(-1)}</text>`:""}<text x="${a.cx}" y="${a.cy+(a.n.length>14?27:16)}" text-anchor="middle" fill="#5a3c1c" font-size="10"${lab}>${lock?"ab Stufe "+a.lv:"Stufe "+a.lv+"+"}</text></g>`}).join("")}</svg>
  <div class="m">Dein Standort: <b>${AR[S.ar].n}</b> · Klicke ein Gebiet an, um Details zu sehen · ◆ = Metinsteine und Bosse · Torbogen = Dungeon-Eingang · gestrichelt = empfohlene Reihenfolge</div></div>`}
 // ---- Alchemie: Logik ----
 const SPC=[0,.2,.25,.35,.5,.8,1];
@@ -2837,7 +2841,9 @@ function setNm(key,v){CFG.nm=CFG.nm||{};v=String(v||"").trim().replace(/[<>"]/g,
 function monFit(){const grp={};for(const m of MO){const k=m.dg!=null?"d"+m.dg:"a"+m.a;(grp[k]=grp[k]||[]).push(m)}
  for(const k in grp){const l=grp[k],z=k[0]=="d"?DG[+k.slice(1)]:AR[+k.slice(1)];if(!z)continue;const lo=z.lv,hi=Math.max(lo,Math.min(z.mx,lo+(k[0]=="d"?12:25)));
   const ws=l.map(m=>m.W),a=Math.min(...ws),b=Math.max(...ws);for(const m of l)m.L0=Math.round(lo+(b>a?(m.W-a)/(b-a):0)*(hi-lo))}}
-function applyCfg(){applyNames();
+function applyCfg(){applyNames();MAPBG="";
+ // Lage der Gebiete auf der Weltkarte: eigene Position aus CFG.ar[Name].x/.y (Konfiguration → Gebiete → Weltkarte)
+ for(const a of AR){const c=(CFG.ar||{})[a.n]||{};if(a.cx0==null){a.cx0=a.cx;a.cy0=a.cy}a.cx=c.x!=null?c.x:a.cx0;a.cy=c.y!=null?c.y:a.cy0}
  for(const a of AR){const c=(CFG.ar||{})[a.n]||{};a.lv=c.lv!=null?Math.max(1,Math.round(c.lv)):a.d0.lv;a.mx=c.mx!=null?Math.max(a.lv,Math.round(c.mx)):Math.max(a.lv,a.d0.mx)}
  for(const d of DG){const c=(CFG.dg||{})[d.n]||{},z=d.d0;d.lv=c.lv!=null?Math.max(1,Math.round(c.lv)):z.lv;d.mx=c.mx!=null?Math.max(d.lv,Math.round(c.mx)):Math.max(d.lv,z.mx);
   d.cd=c.cd!=null?Math.max(0,c.cd):z.cd;d.daily=c.daily!=null?(Math.round(c.daily)||undefined):z.daily;d.chestLv=c.chestLv!=null?(Math.round(c.chestLv)||undefined):z.chestLv;
@@ -3014,7 +3020,25 @@ function cfgRules(){const r=CFG.rules||{},z=RULES0,f=k=>fld(RULESN[k][0]+" ("+RU
   <div class="m">Aktuell: ${ex} · Summe von Stufe 1 bis 30: ${fmtN(sum30)} EP</div>
   <div class="rlg">${cells}</div>
   <div class="row"><span class="m">Stufen 1–${xplMax} angezeigt</span>${xplMax<99?`<button class="btn s" onclick="xplMax=99;R()">Bis Stufe 99 zeigen</button>`:`<button class="btn s" onclick="xplMax=60;R()">Weniger zeigen</button>`}</div></div>`}
-function cfgGeb(){return`<div class="card stack" style="margin-top:12px"><h2>Gebiete</h2><div class="m">Lege fest, ab welcher Stufe ein Gebiet betreten werden kann und bis zu welcher Stufe es volle EP gibt. Leere Felder nutzen den Standardwert (grau).</div>
+// ---- Konfiguration → Gebiete → Weltkarte: eigenes Kartenbild und Lage der Gebiete (Ziehen mit der Maus) ----
+function mapSet(f){CFG.ar=CFG.ar||{};const o=Object.assign({},mapOpt());f(o);CFG.ar._map=o;saveCfg()}
+function mapPos(i,x,y){CFG.ar=CFG.ar||{};const a=AR[i],c=CFG.ar[a.n]=CFG.ar[a.n]||{};c.x=Math.round(Math.max(20,Math.min(380,x)));c.y=Math.round(Math.max(20,Math.min(270,y)));saveCfg()}
+function mapReset(){if(!confirm("Alle Gebiete wieder an ihre ursprüngliche Stelle setzen?"))return;for(const a of AR){const c=(CFG.ar||{})[a.n];if(c){delete c.x;delete c.y;if(!Object.keys(c).length)delete CFG.ar[a.n]}}saveCfg()}
+let mapDrag=null;
+function mapDown(e,i){e.preventDefault();const svg=e.currentTarget.ownerSVGElement;mapDrag={i,svg,g:e.currentTarget,x:AR[i].cx,y:AR[i].cy};e.currentTarget.setPointerCapture(e.pointerId)}
+function mapMove(e){if(!mapDrag)return;const p=mapDrag.svg.createSVGPoint();p.x=e.clientX;p.y=e.clientY;const q=p.matrixTransform(mapDrag.svg.getScreenCTM().inverse());
+ mapDrag.x=Math.max(20,Math.min(380,q.x));mapDrag.y=Math.max(20,Math.min(270,q.y));mapDrag.g.setAttribute("transform",`translate(${mapDrag.x-AR[mapDrag.i].cx} ${mapDrag.y-AR[mapDrag.i].cy})`)}
+function mapUp(){if(!mapDrag)return;const d=mapDrag;mapDrag=null;if(Math.abs(d.x-AR[d.i].cx)>.5||Math.abs(d.y-AR[d.i].cy)>.5)mapPos(d.i,d.x,d.y)}
+function cfgMap(){const u=mapImg(),mo=mapOpt(),moved=AR.some(a=>{const c=(CFG.ar||{})[a.n];return c&&(c.x!=null||c.y!=null)});
+ return`<div class="card stack" style="margin-top:12px"><h2>Weltkarte</h2>
+ <div class="m">Lade ein eigenes Bild als Weltkarte hoch (am besten im Querformat etwa 4 : 3, z. B. 1600 × 1160 Pixel). Danach ziehst du jedes Gebiet mit der Maus an die passende Stelle auf deinem Bild. Ohne eigenes Bild bleibt die gezeichnete Karte.</div>
+ <div class="row" style="gap:6px"><label class="btn${u?" s":""}" style="cursor:pointer">${u?"Kartenbild ändern":"Kartenbild hochladen"}<input type="file" accept="image/*" style="display:none" onchange="iconUpload('map:welt',this.files[0])"></label>${u?`<button class="btn s" onclick="iconDel('map:welt')">Kartenbild entfernen</button>`:""}
+  ${moved?`<button class="btn s" onclick="mapReset()">Positionen zurücksetzen</button>`:""}</div>
+ ${u?`<div class="row" style="gap:12px"><label class="m"><input type="checkbox" ${mo.fl?"checked":""} onchange="mapSet(o=>o.fl=this.checked)"> Farbige Gebietsflächen zeigen</label><label class="m"><input type="checkbox" ${mo.rd?"checked":""} onchange="mapSet(o=>o.rd=this.checked)"> Gestrichelten Weg zeigen</label></div>`:""}
+ <svg class="mape" viewBox="0 0 400 290" style="width:100%;max-width:760px;touch-action:none" onpointermove="mapMove(event)" onpointerup="mapUp()" onpointercancel="mapUp()" aria-label="Weltkarte bearbeiten">${mapBgAny()}
+  ${AR.map((a,i)=>`<g class="mapk" onpointerdown="mapDown(event,${i})" style="cursor:grab"><circle cx="${a.cx}" cy="${a.cy}" r="9" fill="#a3221a" stroke="#f3e6c4" stroke-width="2"/><text x="${a.cx}" y="${a.cy-13}" text-anchor="middle" font-size="10" font-family="Cinzel,Georgia,serif" font-weight="700" fill="#2a170a" stroke="#f3e6c4" stroke-width="3" paint-order="stroke">${chEsc(a.n)}</text></g>`).join("")}</svg>
+ <div class="m">Ziehe die roten Punkte. Der Punkt ist die Mitte des Gebiets (Name und Kreis erscheinen dort). Änderungen gelten sofort; mit „Für alle veröffentlichen“ bekommen alle Spieler die neue Karte.</div></div>`}
+function cfgGeb(){return cfgMap()+`<div class="card stack" style="margin-top:12px"><h2>Gebiete</h2><div class="m">Lege fest, ab welcher Stufe ein Gebiet betreten werden kann und bis zu welcher Stufe es volle EP gibt. Leere Felder nutzen den Standardwert (grau).</div>
   ${AR.map((a,i)=>[a,i]).sort((x,y)=>x[0].d0.lv-y[0].d0.lv).map(([a,i])=>cfgArea2(a,i)).join("")}</div>
  <div class="card stack" style="margin-top:12px"><h2>Dungeons</h2><div class="m">Stufe, Wartezeit nach dem Abschluss, Eintritte pro Tag, Stufe für die Belohnungstruhe und das Gebiet mit dem Eingang.</div>
   ${DG.map(cfgDg).join("")}</div>`}
@@ -3090,7 +3114,7 @@ const micI=k=>{const u=icU("mi:"+k);return u?imgT(u,k=="cor"?28:22):MIC[k]};
 // cover   = leere Ränder abschneiden, dann das Quadrat ganz füllen (überstehende Seiten werden abgeschnitten), z. B. Fertigkeiten
 // trim    = leere Ränder abschneiden, Seitenverhältnis behalten (Monsterbilder)
 // full    = nur verkleinern (Gebietshintergründe)
-const ICFIT={tr:["contain",128,"Truhen-Icon"],sk:["cover",96,"Fertigkeits-Icon"],cl:["cover",128,"Klassenporträt"],mo:["cover",96,"Monster-Icon"],mb:["trim",320,"Monsterbild"],bg:["full",1280,"Gebietshintergrund"]};
+const ICFIT={map:["full",1600,"Weltkarte"],tr:["contain",128,"Truhen-Icon"],sk:["cover",96,"Fertigkeits-Icon"],cl:["cover",128,"Klassenporträt"],mo:["cover",96,"Monster-Icon"],mb:["trim",320,"Monsterbild"],bg:["full",1280,"Gebietshintergrund"]};
 const icMode=key=>ICFIT[key.split(":")[0]]||["contain",96,"Icon"];
 // Sucht den Bereich mit Inhalt: bei Transparenz alle sichtbaren Pixel, bei einfarbigem Hintergrund (z. B. weiß) alle Pixel, die sich davon abheben
 function trimBox(im,iw,ih){const t=Math.min(1,512/Math.max(iw,ih)),cw=Math.max(1,Math.round(iw*t)),ch=Math.max(1,Math.round(ih*t)),c=document.createElement("canvas");c.width=cw;c.height=ch;
@@ -3109,7 +3133,7 @@ function fitImg(im,key){const[mode,Z]=icMode(key),iw=im.naturalWidth||im.width||
  c.width=c.height=Z;const g=x();
  if(mode=="cover"){const s=Math.min(sw,sh);sx+=(sw-s)/2;sy+=(sh-s)/2;g.imageSmoothingEnabled=!(pixel&&Z>=s*2);g.drawImage(im,sx,sy,s,s,0,0,Z,Z);return c.toDataURL("image/png")}
  const p=Math.round(Z*.06),k=Math.min((Z-2*p)/sw,(Z-2*p)/sh),w=sw*k,h=sh*k;g.imageSmoothingEnabled=!(pixel&&k>=2);g.drawImage(im,sx,sy,sw,sh,(Z-w)/2,(Z-h)/2,w,h);return c.toDataURL("image/png")}
-function iconUpload(key,f){if(!f)return;const bg=key.startsWith("bg:"),big=bg||key.startsWith("mb:");if(!/^image\//.test(f.type)){cfgMsg="Bitte eine Bilddatei wählen (PNG, JPG, WebP, GIF oder SVG).";R();return}
+function iconUpload(key,f){if(!f)return;const bg=key.startsWith("bg:")||key.startsWith("map:"),big=bg||key.startsWith("mb:");if(!/^image\//.test(f.type)){cfgMsg="Bitte eine Bilddatei wählen (PNG, JPG, WebP, GIF oder SVG).";R();return}
  const done=u=>{CFG.ic=CFG.ic||{};const old=CFG.ic[key];CFG.ic[key]=u;if(!saveCfg()){if(old)CFG.ic[key]=old;else delete CFG.ic[key];saveCfg();cfgMsg="Der Browser-Speicher ist voll. Entferne andere eigene Icons oder nutze kleinere Bilder."}else cfgMsg=icMode(key)[2]+" gespeichert und automatisch angepasst.";R()};
  const go=src=>{const im=new Image();im.onload=()=>{try{done(fitImg(im,key))}catch(e){cfgMsg="Das Bild konnte nicht verarbeitet werden.";R()}};im.onerror=()=>{cfgMsg="Das Bild konnte nicht gelesen werden.";R()};im.src=src};
  const r=new FileReader();
@@ -3172,7 +3196,7 @@ const SB_KEY="sb_publishable_q37pXZ7vqP4Nbb5x4app1w_7i8DOSRI";
 // APP_BUILD = Versionsnummer dieser Datei (JJJJMMTTnn). Bei jeder neuen Datei erhöhen!
 // Der Admin gibt eine Version in der Konfiguration mit „Diese Version für alle freigeben“ frei (game_config.data.minVer).
 // Ältere Dateien zeigen dann „Neue Version verfügbar“ und speichern nicht mehr in die Cloud; der Server lehnt sie zusätzlich ab (drachenpfad-version.sql).
-const APP_BUILD=2026111103;
+const APP_BUILD=2026111104;
 let verOld=false;
 const srvMin=()=>+(gcRow&&gcRow.data&&gcRow.data.minVer)||0;
 const verTxt=b=>{b=String(b);return b.length==10?b.slice(6,8)+"."+b.slice(4,6)+"."+b.slice(0,4)+" #"+(+b.slice(8)):b};
