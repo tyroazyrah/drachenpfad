@@ -424,6 +424,35 @@ button.imon:hover{border-color:var(--gold);box-shadow:0 0 8px rgba(232,184,90,.3
 .mapa.lk:hover path{fill:#c8c0b0}
 #mtip{position:fixed;z-index:70;display:none;width:250px;padding:10px 12px;border:1px solid #c8962e;border-radius:6px;background:linear-gradient(180deg,#2a1b10,#140c07);box-shadow:0 8px 24px rgba(0,0,0,.6);color:#f0e2c0;font-size:13px}
 #mtip>*+*{margin-top:6px}.mtl{display:flex;flex-direction:column;gap:2px;font-size:12.5px}
+/* ---- Charakter-Übersicht ---- */
+.chh{display:flex;align-items:center;gap:14px}.chav .avme .av,.chav .avl{border-radius:10px}
+.chsp{font-weight:700;font-size:21px;color:#cdbb9a;display:flex;align-items:center;gap:6px;margin:2px 0}.chsp.on{color:#ffb84a;text-shadow:0 0 10px rgba(255,150,40,.55)}
+.chg{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(220px,300px);grid-template-areas:"s k p" "kk kk p";gap:14px 18px;margin-top:12px;align-items:start}
+.chs{grid-area:s;display:flex;flex-direction:column;gap:12px}.chk{grid-area:k;display:flex;flex-direction:column;gap:8px}.chpt{grid-area:p}.chpt>.petb{height:100%}
+.chk h3{margin:0 0 4px;font-weight:600;font-size:21px;font-family:inherit;color:#f0e2c0;padding-bottom:6px;border-bottom:1px solid rgba(200,150,46,.35)}
+.chst{position:relative;display:flex;align-items:center;gap:10px;min-height:54px;padding:6px 8px 6px 60px;margin-left:6px;border:1px solid #8a6326;border-radius:6px;
+ background:linear-gradient(180deg,#3a2614 0%,#22150b 55%,#1a0f07 100%);box-shadow:inset 0 1px 0 rgba(255,220,150,.18),inset 0 -2px 6px rgba(0,0,0,.5),0 2px 6px rgba(0,0,0,.45);cursor:help}
+.chst:hover,.chst:focus-visible{border-color:#e8b85a;outline:none}
+.chmd{position:absolute;left:-8px;top:50%;transform:translateY(-50%);width:62px;height:62px;display:flex;align-items:center;justify-content:center;border-radius:50%;
+ background:radial-gradient(circle at 50% 40%,#5a3418,#1a0d05 70%);border:2px solid #9a7a4a;box-shadow:0 0 0 3px #2a1a0c,0 0 0 4px #6a5030,0 3px 8px rgba(0,0,0,.6)}
+.chmd .sti img,.chmd .sti svg{border-radius:50%}
+.chsl{flex:1;min-width:0;font-weight:600;font-size:17px;color:#f0e2c0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chsv{font-weight:700;font-size:22px;color:#fff2d0;white-space:nowrap}.chsv em{font-style:normal;color:#7ae06a;margin-left:6px;font-size:19px}
+.chpl{width:38px;height:38px;flex:none;border-radius:6px;border:2px solid #ffd25a;background:linear-gradient(180deg,#6a4a14,#3a2408);color:#ffd25a;font:900 28px/30px Arial,sans-serif;cursor:pointer;
+ box-shadow:0 0 10px rgba(255,190,60,.55),inset 0 1px 0 rgba(255,240,180,.4)}
+.chpl:hover:not(:disabled){background:linear-gradient(180deg,#8a6018,#4a2e0a);box-shadow:0 0 14px rgba(255,200,80,.8)}.chpl:disabled{opacity:.3;box-shadow:none;cursor:default;border-color:#8a6326;color:#8a6326}
+.chkv{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:4px 10px;padding:7px 10px;border:1px solid #4a3520;border-radius:6px;background:linear-gradient(90deg,#24170c,#1a1008);cursor:help}
+.chkv:hover,.chkv:focus-visible{border-color:#c8962e;outline:none}
+.chki{line-height:0}.chkl{font-weight:600;font-size:16px;color:#f0e2c0}.chkn{font-weight:700;font-size:19px;color:#ffe2a0;padding-left:12px;border-left:1px solid #3a2a18;min-width:64px;text-align:right}.chkn.mp{color:#7ab0ff}
+.chkb{grid-column:1/-1;height:5px;border-radius:3px;background:#0008;overflow:hidden}.chkb i{display:block;height:100%}.chkb.tp i{background:linear-gradient(90deg,#8a1a1a,#e0402a)}.chkb.mp i{background:linear-gradient(90deg,#1a3a8a,#4a8aff)}
+.chkk{grid-area:kk;position:relative;display:flex;align-items:center;justify-content:center;gap:14px;min-height:74px;margin:6px 40px 0;padding:10px 70px;border:2px solid #a8783a;border-radius:10px;cursor:help;
+ background:linear-gradient(180deg,#5a3a1c,#2e1c0c 60%,#1e1208);box-shadow:inset 0 1px 0 rgba(255,220,150,.3),inset 0 -3px 10px rgba(0,0,0,.5),0 4px 14px rgba(0,0,0,.6);
+ font:700 30px var(--hd,Georgia,serif);color:#f0e2c0;text-shadow:0 2px 3px #000}.chkk b{color:#fff6dc}
+.chkk::before,.chkk::after{content:"";position:absolute;left:50%;width:120px;height:10px;transform:translateX(-50%);background:radial-gradient(ellipse at center,#d8a050 0 35%,transparent 70%)}.chkk::before{top:-7px}.chkk::after{bottom:-7px}
+.chkko{position:absolute;top:50%;width:70px;height:90px;transform:translateY(-50%);background:no-repeat center/contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 70 90'%3E%3Cg fill='none' stroke='%23b8864a' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M60 85C30 75 14 55 14 32 14 18 22 8 34 6'/%3E%3Cpath d='M34 6c-6 8-6 16 2 20M14 32c8-6 18-4 22 4M18 52c8-4 18 0 20 8M30 70c8-2 16 2 18 10'/%3E%3C/g%3E%3Cg fill='%23d8a050'%3E%3Cellipse cx='26' cy='20' rx='5' ry='9' transform='rotate(-30 26 20)'/%3E%3Cellipse cx='17' cy='42' rx='5' ry='9' transform='rotate(-10 17 42)'/%3E%3Cellipse cx='24' cy='62' rx='5' ry='9' transform='rotate(20 24 62)'/%3E%3Cellipse cx='42' cy='76' rx='5' ry='9' transform='rotate(55 42 76)'/%3E%3C/g%3E%3C/svg%3E")}
+.chkko.l{left:-38px}.chkko.r{right:-38px;transform:translateY(-50%) scaleX(-1)}
+@media (max-width:980px){.chg{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"s k" "kk kk" "p p"}}
+@media (max-width:640px){.chg{grid-template-columns:minmax(0,1fr);grid-template-areas:"s" "k" "kk" "p"}.chkk{margin:6px 30px 0;padding:10px 50px;font-size:24px}}
 .dlg:has(.tk){max-width:780px}
 .tk{display:flex;flex-direction:column;gap:10px}
 .tkh{display:flex;justify-content:space-between;font-size:12px;color:#cdbb9a;letter-spacing:.04em;text-transform:uppercase}
@@ -2250,10 +2279,24 @@ function stIco(k,z){z=z||26;const u=icU("st:"+k);if(u)return`<span class="sti">$
  return`<span class="sti"><svg viewBox="0 0 40 40" width="${z}" height="${z}" aria-hidden="true"><defs><linearGradient id="stg${k}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd27a"/><stop offset="1" stop-color="#e0541c"/></linearGradient></defs>
  <rect x="1.5" y="1.5" width="37" height="37" rx="3" fill="#2a0c06" stroke="#8a2a12" stroke-width="2"/><rect x="4" y="4" width="32" height="32" rx="2" fill="#4a1408" stroke="#c84a1a" stroke-width=".8" opacity=".9"/>
  <g fill="url(#stg${k})" stroke="url(#stg${k})" style="filter:drop-shadow(0 0 2px #ff7a2a)">${STG[k]}</g></svg></span>`}
-function charHtml(){const st=stat(),t=S.st,bl=boniList(),fs=fx().st;
- const row=k=>`<div class="slot">${stLbl(k,SK[k])}<span><b>${t[k]}</b>${fs[k]?` <span class="up">+${fs[k]}</span>`:""} ${S.sp>0&&t[k]<90?`<button class="btn s" onclick="addSt('${k}')" aria-label="${SK[k]} erhöhen">+</button>`:""}</span></div>`;
- return`<div class="card stack" style="margin-top:12px"><div class="top"><div class="row" style="flex-wrap:nowrap;gap:12px;align-items:center">${avMine()}<div><h2 style="margin:0">Charakter</h2>${avMineBar()}</div></div><button class="bagb${invOpen?" on":""}" onclick="invToggle()" title="Inventar öffnen (Taste I)" aria-label="Inventar ${invOpen?"schließen":"öffnen"} (Taste I)">${itm("bag",34)}<span>Inventar</span></button></div><div class="m">${CL[S.c].n} · Stufe ${S.lvl} · Statuspunkte: <b>${S.sp}</b></div><div class="cols" style="margin-top:0"><div class="stack">${["str","vit","dex","int"].map(row).join("")}
-  <details class="bsp"${bonOpen?" open":""} ontoggle="bonOpen=this.open"><summary>Boni durch Ausrüstung <span class="m">(${bl.length})</span></summary><div class="bspl">${S.al&&S.al.on&&S.lvl>=AL_LV?`<div><b>Alchemie aktiv</b> · <a class="m" href="#alchemie">Boni ansehen</a></div>`:""}${bl.length?bl.map(x=>`<div class="m">${x}</div>`).join(""):'<span class="m">Keine Boni. Rüste Items mit Boni aus.</span>'}</div></details></div><div class="stack">${[["atk",st.a],["matk",st.ma],["def",st.d],["mdef",st.md],["tp",st.tp],["mp",st.mp],["kk",st.p]].map(([k,v])=>`<div class="slot">${stLbl(k,STN[k])}<b>${v}</b></div>`).join("")}</div>${petHtml()}</div></div>`}
+// Charakter-Übersicht: links die Statuswerte mit großem Icon und Plus-Knopf, in der Mitte Kampf- und Defensivwerte mit TP-/MP-Balken,
+// rechts das Pet, unten das Kampfkraft-Banner. Alle Icons sind die bisherigen (stIco, eigene Bilder aus Konfiguration → Icons → Status & Werte).
+function charHtml(){const st=stat(),t=S.st,bl=boniList(),fs=fx().st,sp=S.sp||0;
+ const hv=k=>`tabindex="0" onmouseenter="stHover(event,'${k}')" onmouseleave="stHover()" onfocus="stHover(event,'${k}')" onblur="stHover()"`;
+ const row=k=>{const can=sp>0&&t[k]<90;return`<div class="chst" ${hv(k)} aria-label="${SK[k]}: ${t[k]}${fs[k]?" +"+fs[k]:""}"><span class="chmd">${stIco(k,40)}</span><span class="chsl">${SK[k]}:</span><span class="chsv">${t[k]}${fs[k]?`<em>+${fs[k]}</em>`:""}</span>
+  <button class="chpl" ${can?"":"disabled"} onclick="event.stopPropagation();addSt('${k}')" title="${can?SK[k]+" um 1 erhöhen":t[k]>=90?"Höchstwert 90 erreicht":"Keine Statuspunkte frei"}" aria-label="${SK[k]} erhöhen">+</button></div>`};
+ const val=(k,v,bar)=>`<div class="chkv${bar?" b":""}" ${hv(k)}><span class="chki">${stIco(k,30)}</span><span class="chkl">${STN[k]}</span><b class="chkn${k=="mp"?" mp":""}">${fmtN(v)}</b>${bar?`<span class="chkb ${k}"><i style="width:${Math.max(0,Math.min(100,bar*100))}%"></i></span>`:""}</div>`;
+ return`<div class="card chv" style="margin-top:12px">
+ <div class="chh"><div class="chav">${avMine()}</div><div style="min-width:0;flex:1"><h2 style="margin:0">Charakter</h2>
+  <div class="chsp${sp?" on":""}">Statuspunkte: ${sp} ${itm("yang",20)}</div><span class="m">${CL[S.c].n} · Stufe ${S.lvl}</span>${avMineBar()}</div>
+  <button class="bagb${invOpen?" on":""}" onclick="invToggle()" title="Inventar öffnen (Taste I)" aria-label="Inventar ${invOpen?"schließen":"öffnen"} (Taste I)">${itm("bag",34)}<span>Inventar</span></button></div>
+ <div class="chg">
+  <div class="chs">${["str","vit","dex","int"].map(row).join("")}
+   <details class="bsp"${bonOpen?" open":""} ontoggle="bonOpen=this.open"><summary>Boni durch Ausrüstung <span class="m">(${bl.length})</span></summary><div class="bspl">${S.al&&S.al.on&&S.lvl>=AL_LV?`<div><b>Alchemie aktiv</b> · <a class="m" href="#alchemie">Boni ansehen</a></div>`:""}${bl.length?bl.map(x=>`<div class="m">${x}</div>`).join(""):'<span class="m">Keine Boni. Rüste Items mit Boni aus.</span>'}</div></details></div>
+  <div class="chk"><h3>Kampf- &amp; Defensivwerte</h3>${val("atk",st.a)}${val("matk",st.ma)}${val("def",st.d)}${val("mdef",st.md)}${val("tp",st.tp,Math.max(0,S.hp)/st.tp)}${val("mp",st.mp,S.mp/st.mp)}</div>
+  <div class="chpt">${petHtml()}</div>
+  <div class="chkk" ${hv("kk")}><span class="chkko l" aria-hidden="true"></span><span>Kampfkraft: <b>${fmtN(st.p)}</b></span><span class="chkko r" aria-hidden="true"></span></div>
+ </div></div>`}
 let bonOpen=false;
 function tgt(){return selE?S.eq[selE]:S.inv[sel]}
 function smithHtml2(){const it=tgt(),u=it?it.u||0:0;let body;
@@ -3300,7 +3343,7 @@ const SB_KEY="sb_publishable_q37pXZ7vqP4Nbb5x4app1w_7i8DOSRI";
 // APP_BUILD = Versionsnummer dieser Datei (JJJJMMTTnn). Bei jeder neuen Datei erhöhen!
 // Der Admin gibt eine Version in der Konfiguration mit „Diese Version für alle freigeben“ frei (game_config.data.minVer).
 // Ältere Dateien zeigen dann „Neue Version verfügbar“ und speichern nicht mehr in die Cloud; der Server lehnt sie zusätzlich ab (drachenpfad-version.sql).
-const APP_BUILD=2026111108;
+const APP_BUILD=2026111109;
 let verOld=false;
 const srvMin=()=>+(gcRow&&gcRow.data&&gcRow.data.minVer)||0;
 const verTxt=b=>{b=String(b);return b.length==10?b.slice(6,8)+"."+b.slice(4,6)+"."+b.slice(0,4)+" #"+(+b.slice(8)):b};
